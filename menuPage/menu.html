@@ -5,7 +5,7 @@
 	<meta charset="ISO-8859-1" />
 	<meta name="title" content="Faroles Taberna Rock">
 	<meta name="copyright" content="(c) 2018 Universidad de Valladolid">
-	<meta name="author" content="Adrian Mazaira, Javier Olmedo y Scoty Maricon">
+	<meta name="author" content="Adrian Mazaira, Javier Olmedo y Darío Yuste">
 	<meta name="contact" content="bbb@hotmail.com">
 	<meta name="organization" content="Faroles Tabera Rock">
 	<meta name="homepage" content="index.html">
@@ -15,7 +15,7 @@
 
 
 	<title>Faroles Taberna Rock 1</title>
-	<link rel="stylesheet" href="../style.css" type="text/css">
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 
 <body>
@@ -35,15 +35,91 @@
 		</div>
 	</header>
 
-	<h1>Menu</h1>
-	<aside>Menu vegano</aside>
-	<img src="../photos/cesped.jpg" />
+	<!-- Main title and "underline" -->
+	<h1 class="title_Name"> Menú </h1>
+	<hr align="left" class="title_Underline">
+
 	<section>
-		<h1>Menu del da</h1>
-		<a> Nuestro menu del dia con 6 primeros y 6 segundos por 10?</a>
-		<img src="../photos/tortilla.jpg" />
+		<table class="food">
+			<tr>
+				<th class="menu">Toritlla de patatas con cebolla </th>
+				<th class="menu">Toritlla de patatas sin cebolla </th>
+			</tr>
+
+			<tr>
+				<th> <img class="menuPhoto" src="../photos/tortilla.jpg" /> </th>
+				<th> <img class="menuPhoto" src="../photos/tortillasin.jpg" /> </th>
+			</tr>
+			<tr>
+				<th class="menu">Croquetas</a> </th>
+				<th class="menu">Hamburguesa gourmet</a> </th>
+			</tr>
+
+			<tr>
+				<th> <img class="menuPhoto" src="../photos/croquetas.jpg" /> </th>
+				<th> <img class="menuPhoto" src="../photos/hamburguesaGourmet.jpg" /> </th>
+			</tr>
+
+			<tr>
+				<th class="menu">Plato vegano</a> </th>
+				<th class="menu">Callos</a> </th>
+			</tr>
+
+			<tr>
+				<th> <img class="menuPhoto" src="../photos/platoVegano.jpg" /> </th>
+				<th> <img class="menuPhoto" src="../photos/callos.jpg" /> </th>
+			</tr>
+
+
+		</table>
+	</section>
 
 	</section>
+	<div class="button">
+		<button class="button" type="button" onclick="loadDoc()">Conozca nuestros platos</button>
+	</div>
+	<br><br>
+	<table class="description" id="demo"></table>
+
+	<script>
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					myFunction(this);
+				}
+			};
+			xhttp.open("GET", "menu.xml", true);
+			xhttp.send();
+		}
+		function myFunction(xml) {
+			var i;
+			var xmlDoc = xml.responseXML;
+			var table = "<tr><th>Plato</th><th>Alérgenos</th><th>Calorías</th><th>Precio</th><th>Descripción</th></tr>";
+			var x = xmlDoc.getElementsByTagName("food");
+			for (i = 0; i < x.length; i++) {
+				table += "<tr><td>" +
+					x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					x[i].getElementsByTagName("allergens")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					x[i].getElementsByTagName("calories")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					x[i].getElementsByTagName("price")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue +
+					"</td></tr>";
+			}
+			document.getElementById("demo").innerHTML = table;
+		}
+	</script>
+
+	</section>
+
+	<footer>
+		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, España</div>
+	</footer>
+
 </body>
 
 </html>

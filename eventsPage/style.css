@@ -1,0 +1,221 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(../photos/background.jpg);
+  background-size: 100% 100%;
+}
+
+/* ------------------------ HEADER ------------------------ */
+header {
+  overflow: hidden;
+  display: flex;
+  height: 200px;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 5%;
+}
+
+div.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+img.logo {
+  height: 100%;
+  float: left;
+}
+
+nav.headerMenu {
+  height: 25%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+a.menu {
+  font-size: 45px;
+  text-decoration-line: none;
+  color: white;
+}
+
+a.logo {
+  height: 100%;
+}
+
+/* ------------------------ END OF HEADER!!! ------------------------ */
+
+/* ------------------------ MAIN TITLE ------------------------ */
+h1.title_Name {
+  margin-top: 2%;
+  margin-left: 15%;
+  height: 25px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 60px;
+  color: white;
+}
+
+hr.title_Underline {
+  margin-left: 10%;
+  width: 80%;
+  size: 3px;
+  color: white;
+  background: white;
+}
+
+/* ------------------------ END OF MAIN TITLE!!! ------------------------ */
+
+div.events_Container {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* ------------------------ COMING NEXT EVENTS ------------------------ */
+h2.events_ComingNext {
+  font-size: 40px;
+  color: aqua;
+}
+
+ul.events_ComingNext_List {
+  padding-left: 10px;
+  overflow: scroll;
+  height: 250px;
+  background-color: pink;
+}
+
+li.events_ComingNext_List {
+  display: flex;
+}
+
+div.events_ComingNext_List_Date {
+  flex: left;
+  margin: 2%;
+  margin-left: 0;
+  height: 100px;
+  width: 130px;
+  color: black;
+  border: 8px solid black;
+  border-top: 30px solid black;
+  background-color: white;
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+div.events_ComingNext_List_Date_Day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bolder;
+  height: 60%;
+}
+div.events_ComingNext_List_Date_Month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  height: 40%;
+}
+div.events_ComingNext_List_Description {
+  margin-left: 2%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: right;
+  justify-content: flex-start;
+  align-items: center;
+  color: black;
+}
+
+div.events_ComingNext_List_Description_Title {
+  margin-bottom: 1%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: black;
+}
+
+h4.events_ComingNext_List_Description_Title {
+  margin: 0;
+  font-size: 30px;
+  text-align: left;
+}
+
+h5.events_ComingNext_List_Description_Title {
+  margin: 0;
+  margin-left: 2%;
+  font-size: 26px;
+  text-align: left;
+}
+
+p.events_ComingNext_List_Description {
+  margin: 0;
+  font-size: 24px;
+  text-align: left;
+  width: 100%;
+}
+/* ------------------------ END OF COMING NEXT EVENTS! ------------------------ */
+
+/* ------------------------ PASSED EVENTS ------------------------ */
+div.events_AlreadyGone {
+  margin-top: 5%;
+}
+
+h2.events_AlreadyGone {
+  font-size: 40px;
+  color: aqua;
+}
+
+div.events_AlreadyGone_PhotoChanger {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button.events_AlreadyGone_ButtonLeft {
+  float: left;
+}
+
+button.events_AlreadyGone_ButtonRigth {
+  float: right;
+}
+
+img.events_AlreadyGone_Photos {
+  width: 90%;
+  height: 100%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+/* ------------------------ PASSED EVENTS!! ------------------------ */
+
+/* ------------------------ FOOTER ------------------------ */
+footer {
+  margin-top: 10%;
+  height: 150px;
+  background-color: rgba(17, 45, 95, 0.8);
+}
+
+div.footer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}

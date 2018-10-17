@@ -15,7 +15,7 @@
 
 
 	<title>Faroles Taberna Rock 1</title>
-	<link rel="stylesheet" href="../style.css" type="text/css">
+	<link rel="stylesheet" href="./style.css" type="text/css">
 </head>
 
 <body>
@@ -36,13 +36,52 @@
 	</header>
 
 
-	<h1>?Quienes somos?</h1>
+	<!-- Main title and "underline" -->
+	<h1 class="title_Name"> ¿Quiénes somos? </h1>
+	<hr align="left" class="title_Underline">
+	
 	<section>
-		<h1>Somos un negocio familiar</h1>
-		<a>Todos somos guapos, bendita genetica</a>
-		<img src="../photos/fotogente.jpg" />
+
+		<div class="events">
+			<h2 class="events">Somos un negocio familiar</h2>
+			<h4 class="events">Todos somos guapos, bendita genetica</h4>
+		</div>
 
 	</section>
+
+	<div class="moviFotis">
+		<img class="mySlides" src="../photos/heavyatleti.jpg">
+		<img class="mySlides" src="../photos/heavygordo.jpg">
+		<img class="mySlides" src="../photos/heavygato.jpg">
+		<img class="mySlides" src="../photos/heavybeen.jpg">
+		<img class="mySlides" src="../photos/fotogente.jpg" />
+	</div>
+
+	<script>
+		var myIndex = 0;
+		carousel();
+
+		function carousel() {
+			var i;
+			var x = document.getElementsByClassName("mySlides");
+			for (i = 0; i < x.length; i++) {
+				x[i].style.display = "none";
+			}
+			myIndex++;
+			if (myIndex > x.length) { myIndex = 1 }
+			x[myIndex - 1].style.display = "block";
+			setTimeout(carousel, 5000); // Change image every 5 seconds
+		}
+	</script>
+
+	<script>
+		window.alert("Estamos buscando camareros, si estas interesado manda tu CV a farolestabernarock@jemail.com");
+	</script>
+
+
+	<footer>
+		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, España</div>
+	</footer>
 </body>
 
 </html>

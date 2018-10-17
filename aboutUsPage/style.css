@@ -1,7 +1,7 @@
 body {
-	margin: 0;
-	padding: 0;
-  background-image: url(./photos/background.jpg);
+  margin: 0;
+  padding: 0;
+  background-image: url(../photos/background.jpg);
   background-size: 100% 100%;
 }
 
@@ -50,118 +50,62 @@ a.menu {
 a.logo {
   height: 100%;
 }
+
 /* ------------------------ END OF HEADER!!! ------------------------ */
 
 /* ------------------------ MAIN TITLE ------------------------ */
 h1.title_Name {
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 2%;
+  margin-left: 15%;
+  height: 25px;
   display: flex;
-  justify-content: center;
-	font-size: 60px;
-  color: white
+  justify-content: flex-start;
+  font-size: 60px;
+  color: white;
 }
 
-div.arrowDown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-}
-
-img.arrowDown {
-  display: flex;
-  height: 100%;
+hr.title_Underline {
+  margin-left: 10%;
+  width: 80%;
+  size: 3px;
+  color: white;
+  background: white;
 }
 
 /* ------------------------ END OF MAIN TITLE!!! ------------------------ */
 
-div.atmosphere {
-  margin-top: 10%;
+/* About Us */
+div.moviFotis {
+  margin-left: 20%;
+  width: 60%;
   margin-right: 20%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 300px;
-  width: 100%;
 }
 
-div.atmosphere_Text {
-  float: left;
+h2.events {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-h2.atmosphere {
-  display: flex;
-  align-items: center;
   height: 100%;
-  text-align: left;
   color: #81f7f3;
   font-size: 40px;
-  margin-right: 10%;
+  justify-content: center;
 }
 
-h4.atmosphere {
+div.events {
+  width: 100%;
+  text-align: center;
+}
+
+h4.events {
   display: flex;
   align-items: center;
   height: 100%;
   text-align: left;
   color: white;
   font-size: 20px;
-  margin-right: 10%;
+  justify-content: center;
 }
 
-img.atmosphere {
-  margin: 5%;
-  float: right;
-  height: 100%;
-}
-
-div.food {
-  margin-top: 10%;
-  margin-right: 20%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 300px;
+img.mySlides {
   width: 100%;
-}
-
-div.food_Text {
-  float: right;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-
-h2.food {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  text-align: right;
-  color: #81f7f3;
-  font-size: 40px;
-  margin-right: 10%;
-}
-
-h4.food {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  text-align: right;
-  color: white;
-  font-size: 20px;
-  margin-right: 10%;
-}
-
-img.food {
-  margin: 5%;
-  float: left;
-  height: 100%;
 }
 
 /* ------------------------ FOOTER ------------------------ */
