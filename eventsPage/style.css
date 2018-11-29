@@ -51,6 +51,14 @@ a.logo {
   height: 100%;
 }
 
+a.foodThinking {
+  height: 100px;
+}
+
+img.foodThinking {
+  height: 100%;
+}
+
 /* ------------------------ END OF HEADER!!! ------------------------ */
 
 /* ------------------------ MAIN TITLE ------------------------ */
