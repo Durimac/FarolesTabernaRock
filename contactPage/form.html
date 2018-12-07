@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+	<meta charset="UTF-8" />
+</head>
 <body onload="disabler(true)">
 	
 
-    <h2>¡Únete a nuestra peña para pasar una fiestas inolvidables!</h2>
+    <h2>Â¡Ãšnete a nuestra peÃ±a para pasar una fiestas inolvidables!</h2>
 
-    <form action="http://127.0.0.1\action_page.php" target="_blank" accept-charset="ISO-8859-1" onreset="disabler(true)">
+    <form action="procesamiento_formulario.php" target="_blank" accept-charset="UTF-8" onreset="disabler(true)" method="post">
 
         <fieldset>
             <legend>Informacion Personal:</legend>
             Nombre:<br>
             <input type="text" name="firstname" placeholder="Mickey" maxlength="20" required autofocus>
             <br>
-            Apellido 1:<br>
-            <input type="text" name="lastname" placeholder="Mouse" maxlength="20" required>
+            Apellidos:<br>
+            <input type="text" name="lastname" placeholder="Mouse Keyboard" maxlength="20" required>
             <br>
-            Apellido 2:<br>
-            <input type="text" name="secondlastname" placeholder="Disney" maxlength="20">
+            NÃºmero de telÃ©fono:<br>
+            <input type="text" name="phone_number" placeholder="666 777 888" maxlength="20">
             <br>
             Fecha de Naciemiento:<br>
             <input type="date" name="birthDate" placeholder="01-01-1996" required maxlength="20" max="2000-01-01">
             <br>
-            Dirección de correo electrónico:<br>
+            DirecciÃ³n de correo electrÃ³nico:<br>
             <input type="email" name="email" maxlength="40" size="50">
             <br>
 
@@ -31,7 +33,7 @@
 
 
         <!-- <fieldset> -->
-        <p>¿Deseas vestir la vestimenta oficial de nuestro bar? Son solo 10?</p>
+        <p>Â¿Deseas vestir la vestimenta oficial de nuestro bar? Son solo 10?</p>
         <input type="radio" name="Clothes" value="Yes" onclick=disabler(true) checked> Yes<br>
         <input type="radio" name="Clothes" value="No" onclick=disabler(false)> No<br><br>
         <!-- </fieldset> -->
@@ -40,20 +42,20 @@
             function disabler(availability) {
                 if (availability) {
                     document.getElementById("sizex").disabled = false;
-                    peñaFee = 50;
+                    peÃ±aFee = 50;
                 }
                 else {
                     document.getElementById("sizex").disabled = true;
                     document.getElementById("sizex").value = " ";
-                    peñaFee = 40;
+                    peÃ±aFee = 40;
                 }
-                document.getElementById("price").innerHTML = ("Ingrese " + peñaFee + "€ en este numero de cuenta");
+                document.getElementById("price").innerHTML = ("Ingrese " + peÃ±aFee + "â‚¬ en este numero de cuenta");
             }
         </script>
 
         <script>
             function resetConfirm() {
-                return confirm("ATENCION esta accion devolvera todos los campos a su valor inicial.¿Está seguro de que desea realizarla?");
+                return confirm("ATENCION esta accion devolvera todos los campos a su valor inicial.Â¿EstÃ¡ seguro de que desea realizarla?");
 				}
 
         </script>
@@ -80,7 +82,7 @@
             <p id="price"></p>
         </fieldset>
         <input type="checkbox" name="imageRights" value="Aceppt" required> Acepto la distribucion de
-        imagenes en las que aparezca en la página web o las RRSS del bar<br>
+        imagenes en las que aparezca en la pÃ¡gina web o las RRSS del bar<br>
 
 
         <input type="reset" onclick="return resetConfirm(); disabler(true);">

@@ -82,3 +82,294 @@ hr.title_Underline {
 
 /* ------------------------ END OF MAIN TITLE!!! ------------------------ */
 
+/* ------------------------ ORDER CONTAINER ------------------------ */
+div.order_Container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background-color: white;
+}
+
+div.order_Menu {
+  display: flex;
+  flex: 0.7;
+}
+
+div.order_CurrentOrder {
+  display: flex;
+  flex-direction: column;
+  flex: 0.3;
+  margin-left: 2%;
+}
+/* ------------------------ END OF ORDER CONTAINER!!! ------------------------ */
+
+/* ------------------------ TYPE OF PRODUCTS LIST ------------------------ */
+ul.order_Menu_Type {
+  width: 100%;
+  border-right: 2px solid black;
+  padding-bottom: 5%;
+}
+
+li.order_Menu_Type {
+  display: flex;
+  flex-direction: column;
+}
+
+h4.order_Menu_Type {
+  margin: 0;
+  margin-top: 5%;
+  font-size: 30px;
+}
+
+/* ------------------------ END OF TYPE OF PRODUCTS LIST!!! ------------------------ */
+
+/* ------------------------ PRODUCTS LIST ------------------------ */
+ul.order_Menu_ProductsList {
+}
+
+li.order_Menu_Product {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+  height: 60px;
+}
+
+div.order_Menu_Product_Details {
+  display: flex;
+  flex: 0.8;
+  flex-direction: column;
+}
+
+div.order_Menu_Product_Details_NameAndPrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+div.order_Menu_Product_Details_Name {
+  font-size: 20px; 
+}
+
+div.order_Menu_Product_Details_Price {
+  margin-right: 5%;
+  font-size: 22px;
+}
+
+div.order_Menu_Product_Details_Description {
+  margin-left: 2%;
+  font-size: 14px;
+}
+
+div.order_Menu_Product_AddButton {
+  display: flex;
+  flex: 0.2;
+  justify-content: center;
+  align-items: center;
+}
+
+img.order_Menu_Product_AddButton {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 50%;
+}
+
+hr.order_Menu_Product_Separator {
+  margin: 0;
+  margin-bottom: 1%;
+  width: 95%;
+  size: 3px;
+  color: red;
+  background: red;
+}
+/* ------------------------ END OF PRODUCTS LIST!!! ------------------------ */
+
+
+/* ------------------------ CURRENT ORDER ------------------------ */
+h4.order_CurrentOrder_Title {
+  margin-bottom: 3px;
+  font-size: 24px;
+}
+
+hr.order_CurrentOrder_Title {
+  margin: 0;
+  margin-bottom: 1%;
+  width: 80%;
+  size: 3px;
+  color: black;
+  background: black;
+}
+
+ol.order_CurrentOrder_List {
+  padding: 0;
+}
+
+li.order_CurrentOrder_Product {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+img.order_CurrentOrder_Product_DeleteButton {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 20px;
+}
+
+div.order_CurrentOrder_Product_NameAndPrice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 5%;
+  margin-left: 10%;
+  width: 100%;
+
+}
+
+div.order_CurrentOrder_Product_Name {
+  display: flex;
+  flex: 0.7;
+  justify-content: flex-start;
+}
+
+div.order_CurrentOrder_Product_Price {
+  display: flex;
+  flex: 0.3;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+h4.order_CurrentOrder_Total {
+  margin-left: 15%;
+}
+
+div.order_CurrentOrder_FinishButton {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span.order_CurrentOrder_FinishButton {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 5px;
+  padding: 10px;
+  background: red;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  text-shadow: -0.5px 0 black, 0 0.5px black, 0.5px 0 black, 0 -0.5px black;
+}
+
+/* ------------------------ END OF CURRENT ORDER!!! ------------------------ */
+
+
+
+/* ------------------------ MODAL ADDING ------------------------ */
+div.modal_Adding_Bacground {
+  display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+div.modal_Adding_Container {
+  background-color: white;
+  margin: auto;
+  border: 1px solid red;
+  width: 20%;
+}
+
+h3.modal_Adding_Container_Title {
+  margin-top: 0;
+  padding: 3px;
+  background: red;
+  color: white;
+  font-size: 18px;
+}
+
+div.modal_Adding_Container_AmountAndPrice {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+div.modal_Adding_Container_Amount {
+  margin-right: 20%;
+  display: flex;
+  flex-direction: column;
+  flex: 0.7;
+  justify-content: space-between;
+}
+
+div.modal_Adding_Container_Price {
+  display: flex;
+  flex-direction: column;
+  flex: 0.3;
+  justify-content: space-between;
+}
+
+p.modal_Adding_Container_Price {
+  margin: 0;
+}
+
+div.modal_Adding_Container_Buttons {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* ------------------------ END OF MODAL ADDING!!! ------------------------ */
+
+/* ------------------------ MODAL FINISHING ORDER ------------------------ */
+/* ------------------------ END OF MODAL ADDING!!! ------------------------ */
+
+
+/* ------------------------ SPECIAL CSS ------------------------ */
+.hidden {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+}
+
