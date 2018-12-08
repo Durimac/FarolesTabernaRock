@@ -1,7 +1,7 @@
 <?php include('../header.php'); ?>
 
 	<section>
-		<h1 class="title_Name"> FAROLES TABERNA ROCK</h1>
+		<h1 class="title_Name_Main"> FAROLES TABERNA ROCK</h1>
 	</section>
 	<div class="arrowDown">
 		<img class="arrowDown" src="../photos/arrowDown.png" alt="Scroll Down"/>
@@ -10,7 +10,7 @@
 	<div class="atmosphere">
 		<div class="atmosphere_Text">
 			<h2 class="atmosphere"> Nuestro ambiente </h2>
-			<h4 class="atmosphere"> Siempre un cálido ambiente, con buena música rock, las mejores cervezas de importación y una compañía inmejorable. ¡¡Además
+			<h4 class="atmosphere"> Siempre un cï¿½lido ambiente, con buena mï¿½sica rock, las mejores cervezas de importaciï¿½n y una compaï¿½ï¿½a inmejorable. ï¿½ï¿½Ademï¿½s
 			somos uno de esos bares que admiten perros !!" </h4>
 		</div>
 		<img class="atmosphere" src="../photos/fotoBarra.jpg" alt="Un camarero muy rockero"/>
@@ -21,12 +21,12 @@
 		<div class="food_Text">
 			<h2 class="food"> Nuestra comida casera</h2>
 			<h4 class="food"> Contamos con una gran variadad de comida, desde raciones individuales hasta comidas enteras. Pero
-				nunca dejando el buen gusto de lado. Contamos con menú vegano en nuestra carta. </h4>
+				nunca dejando el buen gusto de lado. Contamos con menï¿½ vegano en nuestra carta. </h4>
 		</div>
 	</div>
 
 	<footer>
-			<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, España</div>
+			<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, Espaï¿½a</div>
 		</footer>
 
 </body>
