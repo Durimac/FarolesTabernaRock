@@ -11,7 +11,6 @@
 		<div class="order_CurrentOrder">
 			<h4 class="order_CurrentOrder_Title">Pedido actual</h4>
 			<hr class="order_CurrentOrder_Title">
-			<div class="hidden" id="order_CurrentOrder_Counter">0</div>
 			<ol class="order_CurrentOrder_List" id="order_CurrentOrder_List"></ol>
 			<h4 class="order_CurrentOrder_Total" id="order_CurrentOrder_Total"></h4>
 			<div class="order_CurrentOrder_FinishButton" id="order_CurrentOrder_FinishButton">
@@ -60,17 +59,33 @@
 	</div>
 
 	<!-- FINISHING ORDER MODAL -->
-	<div class="modal_Adding_Bacground" id="modal_FinishingOrder">
+	<div class="modal_FinishingOrder_Bacground" id="modal_FinishingOrder">
 		<!-- Modal content -->
-		<div class="modal_Adding_Container">
-			<input type="text" autofocus placeholder="Nombre" id="modal_Adding_Container_FirstName">
-			<input type="text" placeholder="Apellido" id="modal_Adding_Container_LastName">
-			<input type="email" placeholder="Email" id="modal_Adding_Container_Email">
-			<input type="text" placeholder="N� M�vil" id="modal_Adding_Container_Phone">
-			<input type="date" placeholder="Fecha Recogida" id="modal_Adding_Container_PickUpDate">
-			<div class="modal_Adding_Container_Buttons">
-				<button class="modal_Adding_Container_Button" onclick="closeModal('modal_FinishingOrder')">Cancelar</button>
-				<button class="modal_Adding_Container_Button" onclick="sendFinishedOrder()">Confirmar</button>
+		<div class="modal_FinishingOrder_Container">
+			<h3 class="modal_FinishingOrder_Container_Title">Rellene la información personal de su pedido</h3>
+
+			<div class="modal_FinishingOrder_Container_InputsAndOrderInfo">
+				<div class="modal_FinishingOrder_Container_Inputs">
+					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Nombre</h5>
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" autofocus id="modal_FinishingOrder_Container_FirstName">
+					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Apellidos</h5>
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" id="modal_FinishingOrder_Container_LastName">
+					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Email</h5>
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="email" id="modal_FinishingOrder_Container_Email">
+					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Número Teléfono</h5>
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" id="modal_FinishingOrder_Container_Phone">
+					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Fecha de recogida</h5>
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="date" id="modal_FinishingOrder_Container_PickUpDate">
+				</div>
+
+				<div class="modal_FinishingOrder_Container_OrderInfo">
+					<h4 class="modal_FinishingOrder_Container_OrderInfo_Title">Información del pedido</h4>
+				</div>
+			</div>
+
+			<div class="modal_FinishingOrder_Container_Buttons">
+				<button class="modal_FinishingOrder_Container_Button" onclick="closeModal('modal_FinishingOrder')">Cancelar</button>
+				<button class="modal_FinishingOrder_Container_Button" onclick="sendFinishedOrder()">Confirmar</button>
 			</div>
 		</div>
 	</div>

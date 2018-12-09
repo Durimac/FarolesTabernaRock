@@ -1,7 +1,7 @@
 <?php include('../header.php'); ?>
 
 	<!-- Main title and "underline" -->
-	<h1 class="title_Name"> Menú </h1>
+	<h1 class="title_Name"> MenÃº </h1>
 	<hr align="left" class="title_Underline">
 
 	<section>
@@ -60,7 +60,7 @@
 		function myFunction(xml) {
 			var i;
 			var xmlDoc = xml.responseXML;
-			var table = "<tr><th>Plato</th><th>Alérgenos</th><th>Calorías</th><th>Precio</th><th>Descripción</th></tr>";
+			var table = "<tr><th>Plato</th><th>Alï¿½rgenos</th><th>Calorï¿½as</th><th>Precio</th><th>Descripciï¿½n</th></tr>";
 			var x = xmlDoc.getElementsByTagName("food");
 			for (i = 0; i < x.length; i++) {
 				table += "<tr><td>" +
@@ -82,7 +82,7 @@
 	</section>
 
 	<footer>
-		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, España</div>
+		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, Espaï¿½a</div>
 	</footer>
 
 </body>

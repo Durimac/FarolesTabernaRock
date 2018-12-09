@@ -1,4 +1,4 @@
-var currentOrder = [];
+
 
 function fillMenuList(foodKindsList) {
 	var kindsList = "";
@@ -13,6 +13,7 @@ function fillMenuList(foodKindsList) {
 		document.getElementById("order_Menu_Type").innerHTML = kindsList;
 	}
 }
+
 
 function fillOneType(productsList) {
 	var listItems = "";
@@ -42,47 +43,40 @@ function fillOneType(productsList) {
 	return listItems;
 }
 
+
 function addProductToOrder() {
 	const select_Amount = document.getElementById("select_Amount");
 	const amount = select_Amount.options[select_Amount.selectedIndex].text;
 
-	// Counter for ordering the Current Order List and update it
-	const counter = parseInt(document.getElementById("order_CurrentOrder_Counter").innerHTML);
-	document.getElementById("order_CurrentOrder_Counter").innerHTML = counter + 1;
-
 	const id_product = document.getElementById("modal_Adding_Container_ProductID").innerHTML;
 
-	// If the currentOrder is empty, we now show the Finish Order Button
-	if (currentOrder.length == 0) {
+	const numberOfLIs = document.getElementById("order_CurrentOrder_List").getElementsByTagName("li").length
+
+	// If the currentOrderList is empty, we now show the Finish Order Button
+	if (numberOfLIs == 0) {
 		document.getElementById("order_CurrentOrder_FinishButton").style.visibility = "visible";
 	}
-
-	// Update the Current Order global variable (for traking the order)
-	const newProductToOrder = {
-		id_product: id_product,
-		position: counter,
-		amount: amount
-	};
-	currentOrder.push(newProductToOrder);
 
 	var currentOrderList = document.getElementById("order_CurrentOrder_List").innerHTML;
 
 	const newProduct = `
-			<li class="order_CurrentOrder_Product" id="order_CurrentOrder_Product_${id_product}_${counter}_${amount}" value="${counter}">
+			<li class="order_CurrentOrder_Product" id="order_CurrentOrder_Product_${numberOfLIs}" value="${numberOfLIs}">
 				<img class="order_CurrentOrder_Product_DeleteButton" 
 					src="../photos/Delete.png" 
 					alt="Delete Button" 
-					onclick="deleteProductFromOrder('${id_product}', '${counter}', '${amount}')"
+					onclick="deleteProductFromOrder('${numberOfLIs}')"
 				/>
 				<div class="order_CurrentOrder_Product_NameAndPrice">
-				<div class="order_CurrentOrder_Product_Name">
-					${document.getElementById("modal_Adding_Container_Title").innerHTML} x${amount}
+					<div class="order_CurrentOrder_Product_Name">
+						${document.getElementById("modal_Adding_Container_Title").innerHTML} x${amount}
+					</div>
+
+					<div class="order_CurrentOrder_Product_Price">
+						${document.getElementById("modal_Adding_Container_Price").innerHTML} 
+					</div>
 				</div>
 
-				<div class="order_CurrentOrder_Product_Price" id="order_CurrentOrder_Product_Price_${id_product}_${counter}_${amount}">
-					${document.getElementById("modal_Adding_Container_Price").innerHTML} 
-				</div>
-			</div>
+				<div class="hidden">${id_product}-${amount}</div>
 			</li>
 		`;
 
@@ -93,6 +87,7 @@ function addProductToOrder() {
 
 	closeModal("modal_Adding");
 }
+
 
 function getTotal(newAmount) {
 	var actualTotalPrice = document.getElementById("order_CurrentOrder_Total").innerHTML;
@@ -112,31 +107,39 @@ function getTotal(newAmount) {
 	}
 }
 
-function deleteProductFromOrder(id_product, position, amount) {
+
+function deleteProductFromOrder(value) {
 	// We first get the price of the product to delete and pass it (negatively) to "getTotal" function
-	getTotal(parseFloat(document.getElementById(`order_CurrentOrder_Product_Price_${id_product}_${position}_${amount}`).innerHTML) * -1);
+	getTotal(parseFloat(document.getElementById(`order_CurrentOrder_Product_${value}`)
+		.getElementsByClassName("order_CurrentOrder_Product_Price")[0].innerHTML) * -1);
 
-	// We hide and clean the List Item
-	document.getElementById(`order_CurrentOrder_Product_${id_product}_${position}_${amount}`).className = "hidden";
-	document.getElementById(`order_CurrentOrder_Product_${id_product}_${position}_${amount}`).innerHTML = "";
+	// Search the one to delete
+	const indexToDelete = document.getElementById(`order_CurrentOrder_Product_${value}`).getAttribute("value");
 
-	// Now we need to update the Current Order global value, deleting one item from the array
-	// If the array is only one, we empty the array directly and hide the Finish Order Button
-	if (currentOrder.length == 1) {
-		currentOrder = [];
+	const numberOfLIs = document.getElementById("order_CurrentOrder_List").getElementsByTagName("li").length;
+	
+	// If the number of LIs is only one, we hide the Finish Button
+	if (numberOfLIs == 1) {
 		document.getElementById("order_CurrentOrder_FinishButton").style.visibility = "hidden";
 	}
-	// If lenght is more than one, we find the object we want to delete from the array and splice the array.
-	else {
-		const comparisonObject = {
-			id_product: id_product,
-			position: position,
-			amount: amount
-		};
-		currentOrder.splice(currentOrder.
-			findIndex(object => object === comparisonObject), 1);
+
+	// Change IDs of the rest of <li>
+	for(i = 0 ; i < numberOfLIs ; i++) {
+		if(i == indexToDelete) {
+			// Get the whole list and delete the <li> required
+			const currentOrderList = document.getElementById("order_CurrentOrder_List");
+			currentOrderList.removeChild(currentOrderList.getElementsByTagName("li")[indexToDelete]);
+		}
+		else if(i > indexToDelete) {
+			document.getElementById(`order_CurrentOrder_Product_${i}`).setAttribute("value", `${i - 1}`);
+			document.getElementById(`order_CurrentOrder_Product_${i}`)
+				.getElementsByTagName("img")[0]
+				.setAttribute("onclick", `deleteProductFromOrder('${i - 1}')`);
+			document.getElementById(`order_CurrentOrder_Product_${i}`).id = `order_CurrentOrder_Product_${i - 1}`;
+		}
 	}
 }
+
 
 function openModal_Adding(productName, productID, productPrice) {
 	document.getElementById("modal_Adding_Container_Title").innerHTML = `${productName}`;
@@ -148,10 +151,12 @@ function openModal_Adding(productName, productID, productPrice) {
 	document.getElementById("modal_Adding").style.display = "block";
 }
 
+
 function closeModal(modal) {
 	// When the user clicks on the button, close the modal
 	document.getElementById(`${modal}`).style.display = "none";
 }
+
 
 function setPriceToAddingModal() {
 	const productPrice = document.getElementById("modal_Adding_Container_Price_OneProduct").innerHTML;
@@ -161,14 +166,35 @@ function setPriceToAddingModal() {
 	document.getElementById("modal_Adding_Container_Price").innerHTML = `${price} €`;
 }
 
+
 function openModal_FinishingOrder() {
 	// When the user clicks on the button, open the modal
 	document.getElementById("modal_FinishingOrder").style.display = "block";
 }
 
 
+function getProductsFromOrder () {
+	const numberOfLIs = document.getElementById("order_CurrentOrder_List").getElementsByTagName("li").length;
+
+	var products = [];
+	for(i = 0 ; i < numberOfLIs ; i++) {
+		// Get ID & Amount from hidden div
+		const idAndAmount = document.getElementById(`order_CurrentOrder_Product_${i}`)
+			.getElementsByClassName("hidden")[0].innerHTML;
+
+		const newProduct = {
+			id_product: idAndAmount.substring(0, idAndAmount.indexOf("-")),
+			amount: idAndAmount.substring(idAndAmount.indexOf("-")+1, idAndAmount.lenght)
+		}
+		products.push(newProduct);
+	}
+
+	return products;
+}
+
+
 // FASE DE PRUEBAS!!! NO FUNCIONA (bien al menos)
-function sendFinishedOrder () {
+function sendFinishedOrder() {
 	const firstName = document.getElementById("modal_Adding_Container_FirstName").value;
 	const lastName = document.getElementById("modal_Adding_Container_LastName").value;
 	const email = document.getElementById("modal_Adding_Container_Email").value;
@@ -180,16 +206,16 @@ function sendFinishedOrder () {
 		client_surname: lastName,
 		email: email,
 		phone: phone,
-		pickup_time: pickUpDate 
+		pickup_time: pickUpDate
 	}
 
 	var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+	xmlhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
 			closeModal("modal_FinishingOrder");
-            alert("Pedido realizado correctamente! Te esperamos :P" + this.responseText)
+			alert("Pedido realizado correctamente! Te esperamos :P" + this.responseText)
 		}
-    };
-    xmlhttp.open("GET", "sendFinishedOrder.php?clientInfo=&orderInfo=" + clientInfo + currentOrder, true);
-    xmlhttp.send();
+	};
+	xmlhttp.open("GET", "sendFinishedOrder.php?clientInfo=&orderInfo=" + clientInfo + currentOrder, true);
+	xmlhttp.send();
 }

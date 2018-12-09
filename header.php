@@ -23,7 +23,7 @@
 	<header>
 		<div class="header">
 			<a class="logo" href="../indexPage/index.php">
-				<img class="logo" src="../photos/logofaroles.png" alt="Logo Faroles Taberna Rock"/>
+				<img class="logo" src="../photos/rojo.png" alt="Logo Faroles Taberna Rock"/>
 			</a>
 
 			<!-- Row Menu -->

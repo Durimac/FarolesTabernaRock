@@ -13,10 +13,10 @@
 			<!-- Script to fill the List. For each event it creates a ListItem (<li></li>) with it's own class -->
 			<script>
 				const eventsList = [
-					{ day: 18, month: "OCT", year: "2018", title: "Entrega de la Super Página Web", description: "En este gran día se hará la entrega de la página web de Los Faroles Taberna Rock." },
-					{ day: 20, month: "OCT", year: "2018", title: "Concierto de Miguel Ríos", description: "No te pierdas el concierto inolvidable de Miguel Ríos aquí en Valladolid. Puede adquirir sus entradas en nuestro establecimiento." },
-					{ day: 1, month: "NOV", year: "2018", title: "Hallowen Rockero", description: "En el día de Todos los Santos celebraremos un Halloween Rockero, donde podrás encontrar tanto a Lordi de tabernero, como a Lzzy Hale de camarera. ¡No te lo pierdas!" },
-					{ day: 23, month: "DEC", year: "2018", title: "Cumpleaños de Darío Yuste", description: "El vigésimo segundo cumpleaños de un compañero extraordinario de Teleco, que actualmente se encuentra en Finlandia. Todos estáis invitados." }
+					{ day: 18, month: "OCT", year: "2018", title: "Entrega de la Super PÃ¡gina Web", description: "En este gran dÃ­a se harÃ¡ la entrega de la pÃ¡gina web de Los Faroles Taberna Rock." },
+					{ day: 20, month: "OCT", year: "2018", title: "Concierto de Miguel RÃ­os", description: "No te pierdas el concierto inolvidable de Miguel RÃ­os aquÃ­ en Valladolid. Puede adquirir sus entradas en nuestro establecimiento." },
+					{ day: 1, month: "NOV", year: "2018", title: "Hallowen Rockero", description: "En el dÃ­a de Todos los Santos celebraremos un Halloween Rockero, donde podrÃ¡s encontrar tanto a Lordi de tabernero, como a Lzzy Hale de camarera. Â¡No te lo pierdas!" },
+					{ day: 23, month: "DEC", year: "2018", title: "CumpleaÃ±os de DarÃ­o Yuste", description: "El vigÃ©simo segundo cumpleaÃ±os de un compaÃ±ero extraordinario de Teleco, que actualmente se encuentra en Finlandia. Todos estÃ¡is invitados." }
 				]
 
 				var listItems = "";
@@ -46,17 +46,17 @@
 					const daysLeft = (eventDate - actualDate) / 1000 / 60 / 60 / 24;
 
 					if (daysLeft < 0 && daysLeft > -1) {
-						return `(¡ES HOY!)`;
+						return `(Â¡ES HOY!)`;
 					}
 					else if (daysLeft <= -1) {
 						return `(Lo sentimos, el evento ya ha acabado)`;
 					}
 					else {
 						if (Math.ceil(daysLeft) == 1) {
-							return `(Queda 1 día)`;
+							return `(Queda 1 dÃ­a)`;
 						}
 						else {
-							return `(Quedan ${Math.ceil(daysLeft)} días)`;
+							return `(Quedan ${Math.ceil(daysLeft)} dÃ­as)`;
 						}
 					}
 				}
@@ -104,7 +104,7 @@
 	</script>
 
 	<footer>
-		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, España</div>
+		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, EspaÃ±a</div>
 	</footer>
 </body>
 
