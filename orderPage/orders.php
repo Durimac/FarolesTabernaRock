@@ -67,19 +67,38 @@
 			<div class="modal_FinishingOrder_Container_InputsAndOrderInfo">
 				<div class="modal_FinishingOrder_Container_Inputs">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Nombre</h5>
-					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" autofocus id="modal_FinishingOrder_Container_FirstName">
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required 
+						id="modal_FinishingOrder_Container_FirstName">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Apellidos</h5>
-					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" id="modal_FinishingOrder_Container_LastName">
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required
+						id="modal_FinishingOrder_Container_LastName">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Email</h5>
-					<input class="modal_FinishingOrder_Container_Inputs_Input" type="email" id="modal_FinishingOrder_Container_Email">
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="email" required
+						id="modal_FinishingOrder_Container_Email">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Número Teléfono</h5>
-					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" id="modal_FinishingOrder_Container_Phone">
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required
+						id="modal_FinishingOrder_Container_Phone">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Fecha de recogida</h5>
-					<input class="modal_FinishingOrder_Container_Inputs_Input" type="date" id="modal_FinishingOrder_Container_PickUpDate">
+					<input class="modal_FinishingOrder_Container_Inputs_Input" type="date" required
+						id="modal_FinishingOrder_Container_PickUpDate">
 				</div>
 
 				<div class="modal_FinishingOrder_Container_OrderInfo">
 					<h4 class="modal_FinishingOrder_Container_OrderInfo_Title">Información del pedido</h4>
+					<h3 class="modal_FinishingOrder_Container_OrderInfo_Total" id="modal_FinishingOrder_Container_OrderInfo_Total"></h3>
+					<div class="modal_FinishingOrder_Container_OrderInfo_Comments">
+						<h5 class="modal_FinishingOrder_Container_Inputs_Title">Observaciones</h4>
+						<textarea class="modal_FinishingOrder_Container_Inputs_Comments" 
+							id="modal_FinishingOrder_Container_Inputs_Comments"
+							placeholder="Por ejemplo: La Hamburguesa sin cebolla..."
+							cols="40" rows="7" maxlength="250" onkeyup="setActualChar(this)"
+						>
+						</textarea>
+						<div class="modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar">
+							<span id="modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar"></span>
+							<span id="modal_FinishingOrder_Container_OrderInfo_Comments_MaxChar"></span>
+						</div>
+					</div>
 				</div>
 			</div>
 

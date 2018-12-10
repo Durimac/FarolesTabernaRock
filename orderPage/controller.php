@@ -7,10 +7,9 @@ $loginDB="root";
 $passDB="";
 $nameDB="FarolesTabernaRock";
 
-// @ $db=mysql_pconnect($hostDB, $loginDB, $passDB);
 @ $db = mysqli_connect($hostDB, $loginDB, $passDB, $nameDB);
 if(!$db) {
-	/* Dario's parammeters for the MySQL server. Otherwise it will not work for me (Darío) */
+	// Dario's parammeters for the MySQL server. Otherwise it will not work for me (Darï¿½o)
 	$hostDB="127.0.0.1";
 	$passDB="root";
 	@ $db = mysqli_connect($hostDB, $loginDB, $passDB, $nameDB);
@@ -20,15 +19,15 @@ if(!$db) {
 	}
 }
 
-/* We get the kinds of food that are stored in the data base */
+// We get the kinds of food that are stored in the data base
 $menuKinds = get_MenuKinds($db);
 $foodKindsList = array();
-/* After getting the food kinds, we fill a matrix with each kind of food and its own products List */
+// After getting the food kinds, we fill a matrix with each kind of food and its own products List
 foreach($menuKinds as $index => $column) {
 	$foodKindsList[] = array('kind' => $column, 'productsList' => get_FoodFromKind($db, $menuKinds[$index]));
 }
 
-/* We close the connection with the DB */
+// We close the connection with the DB 
 $db->close();
 
 

@@ -21,9 +21,10 @@ create table orders
 	phone char(11) not null,
 	email char(20),
 	full_cost float(6,2),
-	order_time date not null,
-	pickup_time date not null,
-	ACK char(1)
+	order_time datetime not null,
+	pickup_time datetime not null,
+	order_state char(15),
+	comments char(251)
 );
 
 

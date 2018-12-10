@@ -83,13 +83,13 @@ function addProductToOrder() {
 	currentOrderList += newProduct;
 	document.getElementById("order_CurrentOrder_List").innerHTML = currentOrderList;
 
-	getTotal(document.getElementById("modal_Adding_Container_Price").innerHTML)
+	setTotal(document.getElementById("modal_Adding_Container_Price").innerHTML)
 
 	closeModal("modal_Adding");
 }
 
 
-function getTotal(newAmount) {
+function setTotal(newAmount) {
 	var actualTotalPrice = document.getElementById("order_CurrentOrder_Total").innerHTML;
 	if (actualTotalPrice) {
 		actualTotalPrice = actualTotalPrice.replace("TOTAL: ", "");
@@ -109,8 +109,8 @@ function getTotal(newAmount) {
 
 
 function deleteProductFromOrder(value) {
-	// We first get the price of the product to delete and pass it (negatively) to "getTotal" function
-	getTotal(parseFloat(document.getElementById(`order_CurrentOrder_Product_${value}`)
+	// We first get the price of the product to delete and pass it (negatively) to "setTotal" function
+	setTotal(parseFloat(document.getElementById(`order_CurrentOrder_Product_${value}`)
 		.getElementsByClassName("order_CurrentOrder_Product_Price")[0].innerHTML) * -1);
 
 	// Search the one to delete
@@ -170,13 +170,30 @@ function setPriceToAddingModal() {
 function openModal_FinishingOrder() {
 	// When the user clicks on the button, open the modal
 	document.getElementById("modal_FinishingOrder").style.display = "block";
+
+	// And we fill some information in it
+	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Total").innerHTML =
+		document.getElementById("order_CurrentOrder_Total").innerHTML;
+	document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").innerHTML = "";
+	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_MaxChar").innerHTML = 
+		"/" + document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").getAttribute("maxlength");
+	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar").innerHTML = 
+		document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").value.length;
+}
+
+function setActualChar(textarea) {
+	// Get the inner HTML for the text length
+	const text = textarea.value.length;
+
+	// Set the actual chars
+	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar").innerHTML = text;
 }
 
 
 function getProductsFromOrder () {
 	const numberOfLIs = document.getElementById("order_CurrentOrder_List").getElementsByTagName("li").length;
 
-	var products = [];
+	var productsDirectly = [];
 	for(i = 0 ; i < numberOfLIs ; i++) {
 		// Get ID & Amount from hidden div
 		const idAndAmount = document.getElementById(`order_CurrentOrder_Product_${i}`)
@@ -186,36 +203,104 @@ function getProductsFromOrder () {
 			id_product: idAndAmount.substring(0, idAndAmount.indexOf("-")),
 			amount: idAndAmount.substring(idAndAmount.indexOf("-")+1, idAndAmount.lenght)
 		}
-		products.push(newProduct);
+		productsDirectly.push(newProduct);
+	}
+
+	// It is possible to have more than one entry with the same id in the array. We place them together
+	var products = [];
+	for(i = 0 ; i < productsDirectly.length ; i++) {
+		if(products.length == 0) {
+			products.push(productsDirectly[i]);
+		}
+		else {
+			var nonCoincidence = 0;
+			for(j = 0 ; j < products.length ; j++) {
+				// If the id is already in the final vector, then we plus both amounts
+				if(products[j].id_product == productsDirectly[i].id_product) {
+					products[j].amount = `${parseInt(products[j].amount) + parseInt(productsDirectly[i].amount)}`;
+					break;
+				}
+				else {
+					nonCoincidence++;
+				}
+			}
+			// If the number of nonCoincidence is equal to the length of the vector it means there is a new ID. We add it
+			if(nonCoincidence == products.length) {
+				products.push(productsDirectly[i]);
+			}
+		}
 	}
 
 	return products;
 }
 
 
-// FASE DE PRUEBAS!!! NO FUNCIONA (bien al menos)
+function getTotalAmount() {
+	var actualTotalPrice = document.getElementById("order_CurrentOrder_Total").innerHTML;
+	if (actualTotalPrice) {
+		actualTotalPrice = actualTotalPrice.replace("TOTAL: ", "");
+	}
+	return `${parseFloat(actualTotalPrice)}`;
+}
+
+
+function testEmptyness(array) {
+	for(i = 0 ; i < array.length ; i++) {
+		if(array[i] == null || array[i] == "") {
+			return false;
+		}
+	}
+	return true;
+}
+
+
 function sendFinishedOrder() {
-	const firstName = document.getElementById("modal_Adding_Container_FirstName").value;
-	const lastName = document.getElementById("modal_Adding_Container_LastName").value;
-	const email = document.getElementById("modal_Adding_Container_Email").value;
-	const phone = document.getElementById("modal_Adding_Container_Phone").value;
-	const pickUpDate = document.getElementById("modal_Adding_Container_PickUpDate").value;
+	const pickUpDate = document.getElementById("modal_FinishingOrder_Container_PickUpDate").value;
+
+	const products = getProductsFromOrder();
+
+	const actualDate = new Date().getFullYear() + "-" +
+		new Date().getMonth() + "-" +
+		new Date().getDate() + " " +
+		new Date().getHours() + ":" +
+		new Date().getMinutes() + ":" +
+		new Date().getSeconds();
 
 	const clientInfo = {
-		client_name: firstName,
-		client_surname: lastName,
-		email: email,
-		phone: phone,
-		pickup_time: pickUpDate
+		client_name: document.getElementById("modal_FinishingOrder_Container_FirstName").value,
+		client_surname: document.getElementById("modal_FinishingOrder_Container_LastName").value,
+		phone: document.getElementById("modal_FinishingOrder_Container_Phone").value,
+		email: document.getElementById("modal_FinishingOrder_Container_Email").value,
+		full_cost: getTotalAmount(),
+		order_time: actualDate,
+		pickup_time: "2018-12-09 14:24:00",
+		order_state: "Nuevo",
+		comments: document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").value
+	};
+
+	// We test all the information introducer by the user is not empty
+	if(!testEmptyness([clientInfo.client_name, 
+		clientInfo.client_surname, 
+		clientInfo.email, 
+		clientInfo.phone, 
+		clientInfo.pickup_time])) {
+		alert("Algunos datos están incompletos");
+		return;
 	}
 
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function () {
+	const data = {
+		products: products,
+		clientInfo: clientInfo
+	};
+
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			closeModal("modal_FinishingOrder");
-			alert("Pedido realizado correctamente! Te esperamos :P" + this.responseText)
+			alert(this.responseText);
 		}
 	};
-	xmlhttp.open("GET", "sendFinishedOrder.php?clientInfo=&orderInfo=" + clientInfo + currentOrder, true);
-	xmlhttp.send();
+	request.open("POST", "sendFinishedOrder.php", true);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.send(JSON.stringify(data));
 }
