@@ -48,7 +48,7 @@ if(isset($_GET['q']) && $_GET['q']=="show")
 				<td>".$row['price']."</td> 
 				<td>".$row['calories']."</td> 
 				<td>".$row['kind']."</td>
-				<td>"."<img style='width: 30px;' class='order_Menu_Product_EditButton'"."src='../photos/Edit.png'"."alt='Edit Button'"."onclick='editProduct(${row['id_product']})'"."'/>"."</td> 
+				<td>"."<img style='width: 30px;' class='order_Menu_Product_EditButton'"."src='../photos/Edit.png'"."alt='Edit Button'"." onclick='editProduct(${row['id_product']})'"."'/>"."</td> 
 			</tr>";
 		}
 		echo "</table>"; //Cierra la tabla 
@@ -70,7 +70,7 @@ elseif(isset($_GET['q']) && $_GET['q']=="delete")
 		$result=mysqli_query($db,$query);
 		mysqli_close($db);
 	} 
-
+//---------------------------------EDIT FUNCTION-------------------------------------------------------
 	//Get the product values from the database
 elseif(isset($_GET['q']) && $_GET['q']=="edit")
 {
@@ -81,54 +81,24 @@ elseif(isset($_GET['q']) && $_GET['q']=="edit")
     $query="SELECT * from food WHERE id_product=' ".$id." '";
 	$result=mysqli_query($db,$query);
 	while($row=mysqli_fetch_array($result))
-		{	
-			echo "
-			<form action='procesamiento_formulario_editarProducto.php' target='_blank' accept-charset='UTF-8'  method='post' enctype='multipart/form-data' >";
-			//echo "<body onmouseover='selecter(".'"'.$row['kind'].'"'.")'>";
-			echo "Tipo: <select value=".$row['kind']." type='text' title='Tipo del producto' name='tipo'><option selected>".$row['kind']."</option><option>Futbol</option><option>Baloncesto</option><option>Otros</option></select><BR>";
-			echo "	<fieldset>
-					<legend>Editar Producto:</legend>
-					Nombre del producto:<br>
-					<input type='text' name='ProductName' value=".$row['product_name']." maxlength='20' required autofocus>
-					<br>
-					Descripción:<br>
-					<textarea name='Description' rows='5' cols='100' required>".$row['description']."</textarea>
-					<br>
-					Calorias:<br>
-					<input type='text' name='Calories' value=".$row['calories']." maxlength='20' required>
-					<br>
-					Precio:<br>
-					<input type='text' name='Price' value=".$row['price']." required maxlength='20'>
-					<br>
-					Tipo:<br>
-					<select  type='text' title='Tipo del producto' name='tipo'>
-					<option value=".$row['kind']."selected>".$row['kind']."</option>
-					<option id='carta'	value='Carta'>Carta</option>
-					<option id='especialidad'	value='Especialidades'>Especialidades</option>
-					<option id='hamburguesas'	value='Hamburguesas'>Hamburguesas</option>
-					<option id='cartavegana'	value='CartaVegana'>CartaVegana</option>
-					<option id='hamburguesavegana'	value='HamburguesaVegana'>HamburguesaVegana</option>
-					</select><br>					
-					<!-- In the future, this function must get the kinds from the database and be able to create a new kind-->
-					<br><br><br>       
-					<br><br>
-					<input type='submit' value='Aceptar'>
-				</fieldset>
-				</body>
-			</form>";
-			//echo "<script type=\"text/javascript\">selecter('CartaVegana');</script>";
-			//echo selecter('CartaVegana');;
-		}
+		{		$_SESSION["product_name"] = $row['product_name'];
+	//echo "esto es la variable de sesion". $_SESSION["product_name"];
+				$_SESSION["description"] = $row['description'];
+				$_SESSION["calories"] = $row['calories'];
+				$_SESSION["price"] = $row['price'];
+				$_SESSION["kind"] = $row['kind'];
+				$_SESSION["image"] = $row['image'];
+				$_SESSION["id_product"] = $row['id_product'];		
+		}	
 		
 		
     mysqli_close($db);
+	
+	//echo "<script type=\"text/javascript\">";
+	//echo "location.href=' ./formulario_editar_producto.php'</script>";
+	//header("Location: ./formulario_editar_producto.php");
+    //exit;
 }
-// <select name='Kind' size='1' onclick='selecter(".'"'.$row['kind'].'"'.")'>
-/*<select name='Kind' size='1 >							
-						<option id='carta'	value='Carta'>Carta</option>
-						<option id='especialidad'	value='Especialidades'>Especialidades</option>
-						<option id='hamburguesas'	value='Hamburguesas'>Hamburguesas</option>
-						<option id='cartavegana'	value='CartaVegana'>CartaVegana</option>
-						<option id='hamburguesavegana'	value='HamburguesaVegana'>HamburguesaVegana</option>
-					</select>*/
+
+
 ?>

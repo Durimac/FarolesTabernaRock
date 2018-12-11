@@ -1,0 +1,51 @@
+<CATALOG>
+	<food>
+		<name>Tortilla con cebolla</name>
+		<description>Nuestra tortilla de patata tradicional, famosa en toda la ciudad</description>
+		<calories>250</calories>
+		<allergens>Huevo</allergens>
+		<price>2 euros </price>
+		<ingredients>Huevo, patata, cebolla</ingredients>
+		
+	</food>
+	<food>
+		<name>Tortilla sin cebolla</name>
+		<description>Nuestra tortilla de patata tradicional pero con cebolla, famosa en toda la ciudad</description>
+		<calories>275</calories>
+		<allergens>Huevo</allergens>
+		<price>2 euros</price>
+		<ingredients>Huevo, patata</ingredients>
+	</food>
+	<food>
+		<name>Croquetas</name>
+		<description> 12 croquetas caseras de jamon que haran las delicias de cualquiera, cuidado que arden!</description>
+		<calories>900</calories>
+		<allergens>Huevo, gluten</allergens>
+		<price>8 euros</price>
+		<ingredients>huevo, pan rallado, jamon serrano, harina</ingredients>
+	</food>
+	<food>
+		<name>Hamburguesa gourmet</name>
+		<description> Hamburguesa de 250gr de carne de buey con nuestra salsa secreta que te hara chuparte los dedos</description>
+		<calories>1200</calories>
+		<allergens>Huevo, gluten, lactosa</allergens>
+		<price>6 euros</price>
+		<ingredients>Pan de chapata, queso cheddar, 250gr de hamburguesa de buey, lechuga, tomate, cebolla caramelizada, bacon, huevo frito, salsa especial</ingredients>
+	</food>
+	<food>
+		<name>Callos a la vallisoletana</name>
+		<description> Callos tipicos con nuestro toque roquero</description>
+		<calories>800</calories>
+		<allergens>Gluten</allergens>
+		<price>12 euros</price>
+		<ingredients>Callos, morro de vaca, tocino, chorizo, hueso de jamon, cebolla y morcilla</ingredients>
+	</food>
+	<food>
+		<name>Plato vegano</name>
+		<description> Nuestra especialidad vegana, ensaladilla de bulgur</description>
+		<calories>125</calories>
+		<allergens>No tiene</allergens>
+		<price>12 euros</price>
+		<ingredients>Bulgur, cebolleta, tomate, variedad de pimientos</ingredients>
+	</food>
+</CATALOG>

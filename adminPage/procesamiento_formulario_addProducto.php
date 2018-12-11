@@ -55,15 +55,9 @@ if(isset($_FILES["fileToUpload"]))
 if(isset($_FILES["fileToUpload"]))
 {
     if ($uploadOk == 0) {
-        echo "Vaya, parece que ha habido un error al cargar la imagen.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "El archivo ". basename( $_FILES["fileToUpload"]["name"]). " se ha cargado con éxito.";
-        } else {
-            echo "Vaya, parece que ha habido un error al cargar la imagen.";
-        }
-    }
+		echo "<script type=\"text/javascript\">alert('No se ha podido cargar la foto')</script>";
+		exit;
+	}
 }
 //----------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------IMAGE UPLOADED-------------------------------------------------------------------------------
@@ -77,37 +71,74 @@ if(isset($_FILES["fileToUpload"]))
 @	$kind=$_POST['Kind'];
 @	$image=basename( $_FILES["fileToUpload"]["name"]);
 	
-	/*$penista_name	=	trim($penista_name);
-	$penista_surname	=	trim($penista_surname);
-	$penista_email	=	trim($penista_email);
-	$penista_telephone	=	trim($penista_telephone);
-	$penista_age	=	trim($penista_age);
-	$clothes	=	trim($clothes);
-	$clothes_size	=	trim($clothes_size);
+	$product_name	=	trim($product_name);
+	$description	=	trim($description);
+	$calories	=	trim($calories);
+	$price	=	trim($price);
+	$kind	=	trim($kind);
+
 	
-	if	(!$penista_name	||	!$penista_email ||	!$penista_telephone	||	!$penista_age)
+	if	(!$product_name	||	!$description ||	!$calories	||	!$price || !$kind || !$image)
 	{
-		echo "No	ha	introducido	toda	la	información	requerida	para	el	cliente.	<br>"
-				."Por	favor,	vuelva	a	la	página	anterior	e	inténtelo	de	nuevo."; 
-		exit(); 
+		echo "<script type=\"text/javascript\">alert('Rellene todos los campos por favor')</script>";
+		exit; 
 	}
 		
-	$penista_name	=	addslashes($penista_name);
-	$penista_surname	=	addslashes($penista_surname);
-	$penista_email	=	addslashes($penista_email);
-	$penista_telephone	=	addslashes($penista_telephone);
-	$penista_age	=	addslashes($penista_age);
-	$clothes	=	addslashes($clothes);
-    $clothes_size	=	addslashes($clothes_size);*/
+	$product_name	=	addslashes($product_name);
+	$description	=	addslashes($description);
+	$calories	=	addslashes($calories);
+	$price	=	addslashes($price);
+	$kind	=	addslashes($kind);
+	$image	=	addslashes($image);
+
+	$permitidos = "aáäàâbcçdeéëèêfghiíïìîjklmnoóöòôpqrstuúüùûvwxyzAÁÄÀÂBCÇDEÉËÈÊFGHIJKLMNOÓÖÒÔPQRSTUÚÜÙÛVWXYZ-_'\\";
+	
+	$array_name = explode(' ',$product_name);
+	$num = count($array_name);
+	
+	for ($i = 0; $i < $num; $i++)
+	{
+		
+		for ($j = 0; $j < strlen($array_name[$i]); $j++)
+		{
+			if (strpos($permitidos, substr($array_name[$i],$j,1))===false)
+			{
+				echo "<script type=\"text/javascript\">alert('Introduzca un nombre válido por favor. ".$array_name[$i]." no es válido')</script>";
+				exit;
+			}
+		} 
+	}
+
+	if(!is_numeric($calories)) {
+		echo "<script type=\"text/javascript\">alert('Introduzca un valor numérico en calorías por favor.')</script>";
+		exit();
+	}
+
+	if(!is_numeric($price)) {
+		echo "<script type=\"text/javascript\">alert('Introduzca un valor numérico en precio por favor.')</script>";
+		exit;
+	}
+	
+
+	$image_name = explode(".", $image);
+
+	if($image_name[1]!="jpg" && $image_name[1]!="gif" && $image_name[1]!="png")
+	{
+		echo "<script type=\"text/javascript\">alert('El formato de imagen introducido no es válido (.jpg .gif o .png)')</script>";
+		exit;
+	}
+
 
     @	$db	=	mysqli_connect('localhost',	'root',	'',	'FarolesTabernaRock');
 	mysqli_set_charset($db,"utf8");
 	if	(!$db)
 	{
-		echo	'Error:	No	se	ha	podido	realizar	la	conexión	con	la	Base	de	Datos.	Por	favor,	inténtelo	
-					de	nuevo	más	tarde.';
+		echo "<script type=\"text/javascript\">alert('No se ha podido conectar con la base de datos')</script>";
+
 		exit;
 	}
+
+	
 	
 	$query1		=	"select product_name from food";	
 	$repetidos = mysqli_query($db,$query1);
@@ -125,8 +156,8 @@ if(isset($_FILES["fileToUpload"]))
 					(NULL,	'".	$product_name	."',	'".	$description	."',	'".	$calories	."',	'".	$price	."',	'"	.	$kind	."',  '"	.	$image	."')";	
 	$resultado	=	mysqli_query($db,	$query);
 	
-    // echo "el resultado es: " .$resultado;
     mysqli_close($db);
 
-    echo "<a href=\"luna.php\">Redireccionar a la pagina del administrador.</a>";
+	echo "<script type=\"text/javascript\">alert(\"Producto registrado correctamente\");</script>";
+
 ?>

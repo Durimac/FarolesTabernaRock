@@ -18,8 +18,8 @@ if(@$_SESSION['privilege']!=1)
             <input type="text" name="ProductName" placeholder="Tortilla de Patata" maxlength="20" required autofocus>
             <br>
             Descripción:<br>
-            <input type="text" name="Description" placeholder="La mejor tortilla de patata de valladolid, con huevo, cebolla y patata" maxlength="20" required>
-            <br>
+			<textarea name='Description' rows='5' cols='100' placeholder="La mejor tortilla de patata de valladolid, con huevo, cebolla y patata" required ></textarea>
+			<br>
             Calorias:<br>
             <input type="text" name="Calories" placeholder="100" maxlength="20" required>
             <br>
@@ -31,8 +31,8 @@ if(@$_SESSION['privilege']!=1)
                 <option value="Carta">Carta</option>
                 <option value="Especialidades">Especialidades</option>
                 <option value="Hamburguesas">Hamburguesas</option>
-                <option value="CartaVegana">CartaVegana</option>
-                <option value="HamburguesaVegana">HamburguesaVegana</option>
+                <option value="Carta Vegana">Carta Vegana</option>
+                <option value="Hamburguesa Vegana">Hamburguesa Vegana</option>
             </select>
             <!-- In the future, this function must get the kinds from the database and be able to create a new kind-->
             <br><br><br>

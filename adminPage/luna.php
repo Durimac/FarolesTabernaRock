@@ -63,34 +63,45 @@ function cerrarSesion()
 }
 
 
-//  function selecter(tipo)
-// 	{
-// 		alert("estamos en la funcion!!");
-// 		console.log(tipo);
-//             switch (tipo)
-// 			{
-// 				case "Carta":
-//                 document.getElementById("carta").selected = true;
-//                 break;
+ // function selecter(tipo)
+	// {
+		// alert("estamos en la funcion!!");
+		// console.log(tipo);
+            // switch (tipo)
+			// {
+				// case "Carta":
+                // document.getElementById("carta").selected = true;
+                // break;
 					
-// 				case "Especialidades":
-// 				alert("estamos aqui!!");
-//                 document.getElementById("especialidad").selected = true;
-//                 break;
+				// case "Especialidades":
+				// alert("estamos aqui!!");
+                // document.getElementById("especialidad").selected = true;
+                // break;
 
-// 				case "Hamburguesas":
-//                 document.getElementById("hamburguesas").selected = true;
-//                 break;
+				// case "Hamburguesas":
+                // document.getElementById("hamburguesas").selected = true;
+                // break;
 					
-// 				case "CartaVegana":
-//                 document.getElementById("cartavegana").selected = true;
-//                 break;
+				// case "CartaVegana":
+                // document.getElementById("cartavegana").selected = true;
+                // break;
 					
-// 				case "HamburguesaVegana":
-//                 document.getElementById("hamburguesavegana").selected = true;
-//                 break;					
-//             }
-//     }
+				// case "HamburguesaVegana":
+                // document.getElementById("hamburguesavegana").selected = true;
+                // break;					
+            // }
+    // }
+	
+			// function disabler(availability) {
+			        // if (availability) {
+			            // document.getElementById('fileToUpload').disabled = true;
+						// document.getElementById('actualImage').disabled = false;
+						// document.getElementById('instructions').innerHTML = ('Seleccione la nueva imagen');
+						// document.getElementById('instructions').value = 'fileToUpload';			}
+			       // else {
+							// document.getElementById('fileToUpload').disabled = false;
+							// document.getElementById('instructions').innerHTML = ('');	}	}	
+
 
 
 function editProduct(productID)
@@ -100,8 +111,10 @@ function editProduct(productID)
 	{
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 		{
-			document.getElementById("ListaDeProductos").innerHTML=xmlhttp.responseText;
-			//selecter();						
+			//document.getElementById("ListaDeProductos").innerHTML=xmlhttp.responseText;
+			//selecter();
+			location.replace("./formulario_editar_producto.php")
+			//alert("producto editado correctamente");
 		}
 	};
 	xmlhttp.open("GET","adminfunctions.php?q=edit&id=" + productID,true);

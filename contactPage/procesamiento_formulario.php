@@ -15,7 +15,7 @@
 @	$penista_age=$_POST['birthDate'];
 @	$clothes=$_POST['Clothes'];
 @	$clothes_size=$_POST['size'];
-
+	
 	$penista_name	=	trim($penista_name);
 	$penista_surname	=	trim($penista_surname);
 	$penista_email	=	trim($penista_email);
@@ -39,19 +39,32 @@
 	$clothes	=	addslashes($clothes);
 	$clothes_size	=	addslashes($clothes_size);
 	
-		
-	$permitidos = "aáäàâbcçdeéëèêfghiíïìîjklmnoóöòôpqrstuúüùûvwxyzAÁÄÀÂBCÇDEÉËÈÊFGHIJKLMNOÓÖÒÔPQRSTUÚÜÙÛVWXYZ-_'\\";
-	//echo $penista_name;
-	for ($i=0; $i<strlen($penista_name); $i++)
+	if ($clothes=='Yes')
+		$clothes='Y';
+	else if ($clothes=='No')
 	{
-		//echo substr($penista_name,$i,1);
-		if (strpos($permitidos, substr($penista_name,$i,1))===false)
+		$clothes='N';
+		$clothes_size=NULL;
+	}
+				
+	$permitidos = "aáäàâbcçdeéëèêfghiíïìîjklmnoóöòôpqrstuúüùûvwxyzAÁÄÀÂBCÇDEÉËÈÊFGHIJKLMNOÓÖÒÔPQRSTUÚÜÙÛVWXYZ-_'\\";
+	
+	$array_name = explode(' ',$penista_name);
+	$num = count($array_name);
+	
+	for ($i = 0; $i < $num; $i++)
+	{
+		
+		for ($j = 0; $j < strlen($array_name[$i]); $j++)
 		{
-			echo substr($penista_name,$i,1);
-			echo $penista_name . " no es válido<br>";
-			exit;
-		}
-    } 
+			if (strpos($permitidos, substr($array_name[$i],$j,1))===false)
+			{
+				echo strpos($permitidos, substr($array_name[$i],$j,1));
+				echo $array_name[$i] . " no es válido<br>";
+				exit;
+			}
+		} 
+	}
 	
 	$array_surname = explode(' ',$penista_surname);
 	$num = count($array_surname);
@@ -85,7 +98,7 @@
 	$penista_year = $array_age[0];
 	$penista_month = $array_age[1];
 	$penista_day = $array_age[2];
-	
+
 	if($penista_year > $year)
 	{
 		echo 'Introduzca una fecha de nacimiento verídica1';
@@ -111,43 +124,42 @@
 	}
 	
 	
-	if(($year - $penista_year) > 18)
-	{
-		
-	}
-	else if(($penista_month - $month) > 0)
-	{
-		
-	}
-	else if(($penista_day - $day) >= 0)
-	{
-		
-	}
-	else
+	if(($year - $penista_year) < 18)
 	{
 		echo 'Para ser peñista debe ser mayor de edad';
 		exit;
 	}
-	
-	
-	
-	
-	$hostDB = "localhost";
-	$loginDB = "root";
-	$passDB = "";
-	$nameDB = "FarolesTabernaRock";
-		
-@ $db = mysqli_connect($hostDB, $loginDB, $passDB, $nameDB);
-if(!$db) {
-	/* Dario's parammeters for the MySQL server. Otherwise it will not work for me (Dar�o) */
-	$hostDB="127.0.0.1";
-	$passDB="root";
-	@ $db = mysqli_connect($hostDB, $loginDB, $passDB, $nameDB);
-	if(!$db) {
-		echo "No fue posible conectarse con la base de Datos " .  $db->connect_error();
-		exit();
+	else if(($year - $penista_year) == 18)
+	{
+		if($penista_month > $month)
+		{
+			echo 'Para ser peñista debe ser mayor de edad';
+			exit;
+		}
+		else if($penista_month == $month)
+		{
+			if($penista_day > $day)
+			{
+				echo 'Para ser peñista debe ser mayor de edad';
+				exit;
+			}
+		}
 	}
-}
+	
+	if (!(filter_var($penista_email, FILTER_VALIDATE_EMAIL))) 
+	{
+		echo "Esta dirección de correo ($penista_email) no es válida.";
+	}
+
+
+	
+	
+	
+	
+
+		
+		
+@	$db	=	mysqli_connect('localhost',	'root',	'',	'FarolesTabernaRock');
 	mysqli_set_charset($db,"utf8");
 	if	(!$db)
 	{
@@ -155,7 +167,19 @@ if(!$db) {
 					de	nuevo	más	tarde.';
 		exit;
 	}
-
+	
+	$query1		=	"select penista_name, penista_surname from penista";	
+	$repetidos =	mysqli_query($db,$query1);
+	$num=mysqli_num_rows($repetidos);
+	for ($i=0; $i<$num; $i++)
+	{
+		$fila = mysqli_fetch_array($repetidos);
+		if (($fila['penista_name'] == $penista_name) && ($fila['penista_surname'] == $penista_surname))
+		{
+			echo "<script type=\"text/javascript\">alert(\"Vaya, parece que este usuario ya está registrado\");</script>";
+			exit;
+		}
+	}
 	$query	=	"insert	into penista values	
 					(NULL,	'".	$clothes	."',	'".	$clothes_size	."',	'".	$penista_name	."',	'".	$penista_surname	."',	'"	.	$penista_email	."',  '"	.	$penista_telephone	."',  '"	.	$penista_age	."', NULL )";	
 	$resultado	=	mysqli_query($db,	$query);
