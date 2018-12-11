@@ -29,3 +29,7 @@ INSERT INTO food VALUES (null , 'Hamburguesa Lentejas', 'Hamburguesa vegana, con
 INSERT INTO food VALUES (null , 'Hamburguesa Soja', 'Hamburguesa vegana, con base de soja texturizada con champinon', 325, 6, 'Hamburguesa Vegana', 'HamburguesaSoja.jpg');
 INSERT INTO food VALUES (null , 'Hamburguesa Tofu', 'Hamburguesa vegana, con base de tofu con espinacas', 325, 6, 'Hamburguesa Vegana', 'HamburguesaTofu.jpg');
 INSERT INTO food VALUES (null , 'Campero Vegano', 'Seitan, esparrago, guacamole, lechuga, tomate y mayonesa vegana', 150, 6, 'Hamburguesa Vegana', 'CamperoVegano.jpg');
+
+
+INSERT INTO administrator VALUES ('JacintoFaroles', 'FunnyFaroles', true);
+INSERT INTO administrator VALUES ('MalvadoVillano', 'FunnyFaroles', false);

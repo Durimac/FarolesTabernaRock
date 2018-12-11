@@ -49,3 +49,10 @@ create table penista
 	penista_age char(11),
 	payed char(1)
 );
+
+create table administrator
+(
+	admin_username char(40),
+	admin_password char(30),
+	admin_power boolean
+);

@@ -1,90 +1,98 @@
 <?php include('../header.php'); ?>
 
-	<!-- Main title and "underline" -->
-	<h1 class="title_Name"> Menú </h1>
-	<hr align="left" class="title_Underline">
+<html>
 
-	<section>
-		<table class="food">
-			<tr>
-				<th class="foodMenu">Toritlla de patatas con cebolla </th>
-				<th class="foodMenu">Toritlla de patatas sin cebolla </th>
-			</tr>
+	<head>
+        <h1 class="title_Name"> Buscador </h1>
+	    <hr align="left" class="title_Underline">
+	</head>
 
-			<tr>
-				<th> <img class="menuPhoto" src="../photos/tortilla.jpg" alt="Tortilla casera con cebolla"/> </th>
-				<th> <img class="menuPhoto" src="../photos/tortillasin.jpg" alt="Tortilla casera sin cebolla"/> </th>
-			</tr>
-			<tr>
-				<th class="foodMenu">Croquetas</a> </th>
-				<th class="foodMenu">Hamburguesa gourmet</a> </th>
-			</tr>
+	<body>
 
-			<tr>
-				<th> <img class="menuPhoto" src="../photos/croquetas.jpg" alt="Croquetas caseras"/> </th>
-				<th> <img class="menuPhoto" src="../photos/hamburguesaGourmet.jpg" alt="Hamburguesa de buey"/> </th>
-			</tr>
-
-			<tr>
-				<th class="foodMenu">Plato vegano</a> </th>
-				<th class="foodMenu">Callos</a> </th>
-			</tr>
-
-			<tr>
-				<th> <img class="menuPhoto" src="../photos/platoVegano.jpg" alt="Plato vegano" /> </th>
-				<th> <img class="menuPhoto" src="../photos/callos.jpg" alt="Callos caseros"/> </th>
-			</tr>
+        <h3 class="buscador">Búsqueda general: </h3>
+        <form action = "resultado.php" method="post">
+            <input class="text" name="search" tipe="text" size="15" maxlength="20">
+            <input type="submit" value="Buscar"><br><br><br>
+        </form>
 
 
-		</table>
-	</section>
+        <h3 class="buscador">Búsqueda por nombre: </h3>
+        <form action = "resultado.php" method="post">
+            <input class="text" name="product_name_only" tipe="text" size="15" maxlength="20">
+            <input type="submit" value="Buscar"><br>
+        </form>
 
-	</section>
-	<div class="button">
-		<button class="button" type="button" onclick="loadDoc()">Conozca nuestros platos</button>
-	</div>
-	<br><br>
-	<table class="description" id="demo"></table>
+        <h3 class="buscador">Búsqueda por descripción: </h3>
+        <form action = "resultado.php" method="post">
+            <input class="text" name="description_only" tipe="text" size="15" maxlength="20">
+            <input type="submit" value="Buscar"><br>
+        </form>
 
-	<script>
-		function loadDoc() {
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function () {
-				if (this.readyState == 4 && this.status == 200) {
-					myFunction(this);
-				}
-			};
-			xhttp.open("GET", "menu.xml", true);
-			xhttp.send();
-		}
-		function myFunction(xml) {
-			var i;
-			var xmlDoc = xml.responseXML;
-			var table = "<tr><th>Plato</th><th>Al�rgenos</th><th>Calor�as</th><th>Precio</th><th>Descripci�n</th></tr>";
-			var x = xmlDoc.getElementsByTagName("food");
-			for (i = 0; i < x.length; i++) {
-				table += "<tr><td>" +
-					x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
-					"</td><td>" +
-					x[i].getElementsByTagName("allergens")[0].childNodes[0].nodeValue +
-					"</td><td>" +
-					x[i].getElementsByTagName("calories")[0].childNodes[0].nodeValue +
-					"</td><td>" +
-					x[i].getElementsByTagName("price")[0].childNodes[0].nodeValue +
-					"</td><td>" +
-					x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue +
-					"</td></tr>";
-			}
-			document.getElementById("demo").innerHTML = table;
-		}
-	</script>
+        <h3 class="buscador">Búsqueda por precio: </h3>
+        <form action = "resultado.php" method="post">
+            <input class="text" name="price_only" tipe="text" size="15" maxlength="20">
+            <input type="submit" value="Buscar"><br>
+        </form>
 
-	</section>
+        <h3 class="buscador">Búsqueda por tipo: </h3>
+        <form action = "resultado.php" method="post">
+            <input class="text" name="kind_only" tipe="text" size="15" maxlength="20">
+            <input type="submit" value="Buscar"><br>
+        </form>
 
-	<footer>
-		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, Espa�a</div>
-	</footer>
+        <h3 class="buscador">Búsqueda por calorías: </h3>
+        <form action = "resultado.php" method="post">
+            <input class="text" name="calories_only" tipe="text" size="15" maxlength="20">
+            <input type="submit" value="Buscar"><br><br><br>
+        </form>
 
-</body>
 
+        <h3 class="buscador">Búsqueda avanzada: </h3>
+        <form action="resultado.php" method="post">
+            <h3 class='buscadorAvanzado'>Búsqueda por nombre: </h3>
+            <input class="textAvanzado" name="product_name" tipe="text" size="15" maxlength="20"><br>
+            <h3 class="buscadorAvanzado">Búsqueda en la descripción: </h3>
+            <input class="textAvanzado" name="description" tipe="text" size="15" maxlength="20"><br>
+            <h3 class="buscadorAvanzado">Búsqueda por calorías: </h3>
+            <input class="textAvanzado" name="calories" tipe="text" size="15" maxlength="20"><br>
+            <h3 class="buscadorAvanzado">Búsqueda por precio: </h3>
+            <input class="textAvanzado" name="price" tipe="text" size="15" maxlength="20"><br>
+            <h3 class="buscadorAvanzado">Búsqueda por tipo: </h3>
+            <input class="textAvanzado" name="kind" tipe="text" size="15" maxlength="20"><br>
+            <input class="boton" type="submit" value="Buscar">
+ 
+        </form>
+
+        <?php
+
+            @	$db	=	mysqli_connect('localhost',	'root',	'',	'FarolesTabernaRock');
+            mysqli_set_charset($db,"utf8");
+            if	(!$db)
+            {
+                echo	'Error:	No se ha podido	realizar la	conexión con la	Base de	Datos.';
+                exit;
+            }
+
+            $query = "select * from food";
+
+            $resultado = mysqli_query($db,$query);
+            $num = mysqli_num_rows($resultado);
+            
+
+            for($i=0;$i<$num;$i++)
+            {
+                $fila=mysqli_fetch_array($resultado);
+                
+                $j = $i + 1;
+                echo  "<h3 class=\"nombre\">$j: ".$fila['product_name']."</h3>";
+                echo  "<img class='menuPhoto' src='../photos/FotosMenu/".$fila['image']."'/>";
+                echo  "<h3 class=\"parrafo\">" .$fila['description']."</h3>";
+                echo  "<h3 class=\"parrafo\">Precio: ".$fila['price']."</h3>";
+                echo  "<h3 class=\"parrafo\">Calorias: ".$fila['calories']."</h3><br><br><br>";
+            }          
+
+            mysqli_close($db);
+
+        ?>
+    </body>
 </html>
