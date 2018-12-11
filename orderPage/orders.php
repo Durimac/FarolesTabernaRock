@@ -79,8 +79,10 @@
 					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required
 						id="modal_FinishingOrder_Container_Phone">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Fecha de recogida</h5>
-					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required
-						placeholder="yyyy-mm-dd hh:mm:ss" id="modal_FinishingOrder_Container_PickUpDate">
+					<div style="display: flex; flex-direction: 'row';">
+						<div id="modal_FinishingOrder_Container_Calendar"></div>
+						<div id="modal_FinishingOrder_Container_PickUpTime"></div>
+					</div>
 				</div>
 
 				<div class="modal_FinishingOrder_Container_OrderInfo">
@@ -103,8 +105,8 @@
 			</div>
 
 			<div class="modal_FinishingOrder_Container_Buttons">
-				<button class="modal_FinishingOrder_Container_Button" onclick="closeModal('modal_FinishingOrder')">Cancelar</button>
-				<button class="modal_FinishingOrder_Container_Button" onclick="sendFinishedOrder()">Confirmar</button>
+				<button onclick="closeModal('modal_FinishingOrder')">Cancelar</button>
+				<button onclick="sendFinishedOrder()">Confirmar</button>
 			</div>
 		</div>
 	</div>

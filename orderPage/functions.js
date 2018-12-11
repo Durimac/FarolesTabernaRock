@@ -171,6 +171,66 @@ function openModal_FinishingOrder() {
 	// When the user clicks on the button, open the modal
 	document.getElementById("modal_FinishingOrder").style.display = "block";
 
+	// Print calendar in there
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("modal_FinishingOrder_Container_Calendar").innerHTML = this.responseText;
+
+			const today = new Date().getDate();
+			const daysOfMonth = new Date(new Date().getFullYear(), new Date().getMonth()+1, 0).getDate();
+			for(i = 1 ; i < today ; i++) {
+				document.getElementById(`calendar_${i}`).className = "inactive-day";
+			}
+
+			for(i = today ; i <= daysOfMonth ; i++) {
+				const activeDay = document.getElementById(`calendar_${i}`)
+				activeDay.className = "active-day";
+				activeDay.setAttribute("onclick", 'selectCalendarDay(this)');
+			}
+		}
+	};
+	request.open("GET", "calendar.php", true);
+	request.send();
+
+	// Print the Time selector
+	const hour = new Date().getHours();
+	const minutes = new Date().getMinutes() - (new Date().getMinutes()%5) + 5;
+
+	var selector = `<select id="pickUpTime_Hours" name="Hours">`;
+	for(i = 8 ; i < 24 ; i++) {
+		if(i == hour && i < 10) {
+			selector += `<option selected>0${i}</option>`;
+		}
+		else if (i == hour && i > 10) {
+			selector += `<option selected>${i}</option>`;
+		}
+		else if (i != hour && i < 10) {
+			selector += `<option>0${i}</option>`;
+		}
+		else {
+			selector += `<option>${i}</option>`;
+		}
+	}
+	selector += `</select><select id="pickUpTime_Minutes" name="Minutes">`;
+	for(i = 0 ; i < 60 ; i += 5) {
+		if(i == minutes && i < 10) {
+			selector += `<option selected>0${i}</option>`;
+		}
+		else if (i == minutes && i > 10) {
+			selector += `<option selected>${i}</option>`;
+		}
+		else if (i != minutes && i < 10) {
+			selector += `<option>0${i}</option>`;
+		}
+		else {
+			selector += `<option>${i}</option>`;
+		}
+	}
+	selector += `</select>`;
+
+	document.getElementById("modal_FinishingOrder_Container_PickUpTime").innerHTML = selector;
+
 	// And we fill some information in it
 	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Total").innerHTML =
 		document.getElementById("order_CurrentOrder_Total").innerHTML;
@@ -255,7 +315,20 @@ function testEmptyness(array) {
 
 
 function sendFinishedOrder() {
-	const pickUpDate = document.getElementById("modal_FinishingOrder_Container_PickUpDate").value;
+	var pickUpDay = document.getElementsByClassName("selected-day");
+
+	if(pickUpDay.length == 0) {
+		alert("Selecciona un día de entrega :)");
+		return;
+	}
+	else {
+		pickUpDay = pickUpDay[0].innerHTML;
+	}
+
+	const pickUpHours_Element = document.getElementById("pickUpTime_Hours");
+	const pickUpMinutes_Element = document.getElementById("pickUpTime_Minutes");
+	const pickUpHours = pickUpHours_Element.options[pickUpHours_Element.selectedIndex].value;
+	const pickUpMinutes = pickUpMinutes_Element.options[pickUpMinutes_Element.selectedIndex].value;
 
 	const products = getProductsFromOrder();
 
@@ -273,7 +346,7 @@ function sendFinishedOrder() {
 		email: document.getElementById("modal_FinishingOrder_Container_Email").value,
 		full_cost: getTotalAmount(),
 		order_time: actualDate,
-		pickup_time: document.getElementById("modal_FinishingOrder_Container_PickUpDate").value,
+		pickup_time: `${new Date().getFullYear()}-${new Date().getMonth()}-${pickUpDay} ${pickUpHours}:${pickUpMinutes}:00`,
 		order_state: "Nuevo",
 		comments: document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").value
 	};
@@ -303,4 +376,16 @@ function sendFinishedOrder() {
 	request.open("POST", "sendFinishedOrder.php", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.send(JSON.stringify(data));
+}
+
+
+function selectCalendarDay(day) {
+	// Clear the day selected before
+	const selectDay = document.getElementsByClassName("selected-day");
+	if(selectDay.length != 0) {
+		document.getElementsByClassName("selected-day")[0].className = "active-day";
+	}
+
+	// Select the day clicked
+	day.className = "selected-day";
 }

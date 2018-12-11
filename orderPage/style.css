@@ -58,7 +58,8 @@ li.order_Menu_Product {
   display: flex;
   flex-direction: row;
   margin-top: 1%;
-  height: 60px;
+  min-height: 60px;
+  max-height: 80px;
 }
 
 div.order_Menu_Product_Details {
@@ -307,6 +308,7 @@ div.modal_FinishingOrder_Bacground {
 
 div.modal_FinishingOrder_Container {
   background-color: white;
+  overflow-y: auto;
   margin: auto;
   border: 2px solid brown;
   width: 55%;
@@ -403,6 +405,34 @@ div.modal_FinishingOrder_Container_Buttons {
 }
 /* ------------------------ END OF MODAL ADDING!!! ------------------------ */
 
+
+/* ------------------------ CALENDAR ------------------------ */
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid black;
+}
+
+td.active-day {
+
+}
+
+td.active-day:hover {
+  cursor: pointer;
+  background: lightgreen;
+}
+
+td.inactive-day {
+  background: gray;
+}
+
+td.selected-day {
+  background: green;
+}
+
+/* ------------------------ END OF CALENDAR!!! ------------------------ */
 
 /* ------------------------ SPECIAL CSS ------------------------ */
 .hidden {
