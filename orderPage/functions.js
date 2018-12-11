@@ -117,20 +117,20 @@ function deleteProductFromOrder(value) {
 	const indexToDelete = document.getElementById(`order_CurrentOrder_Product_${value}`).getAttribute("value");
 
 	const numberOfLIs = document.getElementById("order_CurrentOrder_List").getElementsByTagName("li").length;
-	
+
 	// If the number of LIs is only one, we hide the Finish Button
 	if (numberOfLIs == 1) {
 		document.getElementById("order_CurrentOrder_FinishButton").style.visibility = "hidden";
 	}
 
 	// Change IDs of the rest of <li>
-	for(i = 0 ; i < numberOfLIs ; i++) {
-		if(i == indexToDelete) {
+	for (i = 0; i < numberOfLIs; i++) {
+		if (i == indexToDelete) {
 			// Get the whole list and delete the <li> required
 			const currentOrderList = document.getElementById("order_CurrentOrder_List");
 			currentOrderList.removeChild(currentOrderList.getElementsByTagName("li")[indexToDelete]);
 		}
-		else if(i > indexToDelete) {
+		else if (i > indexToDelete) {
 			document.getElementById(`order_CurrentOrder_Product_${i}`).setAttribute("value", `${i - 1}`);
 			document.getElementById(`order_CurrentOrder_Product_${i}`)
 				.getElementsByTagName("img")[0]
@@ -175,9 +175,9 @@ function openModal_FinishingOrder() {
 	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Total").innerHTML =
 		document.getElementById("order_CurrentOrder_Total").innerHTML;
 	document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").innerHTML = "";
-	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_MaxChar").innerHTML = 
+	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_MaxChar").innerHTML =
 		"/" + document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").getAttribute("maxlength");
-	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar").innerHTML = 
+	document.getElementById("modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar").innerHTML =
 		document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").value.length;
 }
 
@@ -190,33 +190,33 @@ function setActualChar(textarea) {
 }
 
 
-function getProductsFromOrder () {
+function getProductsFromOrder() {
 	const numberOfLIs = document.getElementById("order_CurrentOrder_List").getElementsByTagName("li").length;
 
 	var productsDirectly = [];
-	for(i = 0 ; i < numberOfLIs ; i++) {
+	for (i = 0; i < numberOfLIs; i++) {
 		// Get ID & Amount from hidden div
 		const idAndAmount = document.getElementById(`order_CurrentOrder_Product_${i}`)
 			.getElementsByClassName("hidden")[0].innerHTML;
 
 		const newProduct = {
 			id_product: idAndAmount.substring(0, idAndAmount.indexOf("-")),
-			amount: idAndAmount.substring(idAndAmount.indexOf("-")+1, idAndAmount.lenght)
+			amount: idAndAmount.substring(idAndAmount.indexOf("-") + 1, idAndAmount.lenght)
 		}
 		productsDirectly.push(newProduct);
 	}
 
 	// It is possible to have more than one entry with the same id in the array. We place them together
 	var products = [];
-	for(i = 0 ; i < productsDirectly.length ; i++) {
-		if(products.length == 0) {
+	for (i = 0; i < productsDirectly.length; i++) {
+		if (products.length == 0) {
 			products.push(productsDirectly[i]);
 		}
 		else {
 			var nonCoincidence = 0;
-			for(j = 0 ; j < products.length ; j++) {
+			for (j = 0; j < products.length; j++) {
 				// If the id is already in the final vector, then we plus both amounts
-				if(products[j].id_product == productsDirectly[i].id_product) {
+				if (products[j].id_product == productsDirectly[i].id_product) {
 					products[j].amount = `${parseInt(products[j].amount) + parseInt(productsDirectly[i].amount)}`;
 					break;
 				}
@@ -225,7 +225,7 @@ function getProductsFromOrder () {
 				}
 			}
 			// If the number of nonCoincidence is equal to the length of the vector it means there is a new ID. We add it
-			if(nonCoincidence == products.length) {
+			if (nonCoincidence == products.length) {
 				products.push(productsDirectly[i]);
 			}
 		}
@@ -245,8 +245,8 @@ function getTotalAmount() {
 
 
 function testEmptyness(array) {
-	for(i = 0 ; i < array.length ; i++) {
-		if(array[i] == null || array[i] == "") {
+	for (i = 0; i < array.length; i++) {
+		if (array[i] == null || array[i] == "") {
 			return false;
 		}
 	}
@@ -273,17 +273,17 @@ function sendFinishedOrder() {
 		email: document.getElementById("modal_FinishingOrder_Container_Email").value,
 		full_cost: getTotalAmount(),
 		order_time: actualDate,
-		pickup_time: "2018-12-09 14:24:00",
+		pickup_time: document.getElementById("modal_FinishingOrder_Container_PickUpDate").value,
 		order_state: "Nuevo",
 		comments: document.getElementById("modal_FinishingOrder_Container_Inputs_Comments").value
 	};
 
 	// We test all the information introducer by the user is not empty
-	if(!testEmptyness([clientInfo.client_name, 
-		clientInfo.client_surname, 
-		clientInfo.email, 
-		clientInfo.phone, 
-		clientInfo.pickup_time])) {
+	if (!testEmptyness([clientInfo.client_name,
+	clientInfo.client_surname,
+	clientInfo.email,
+	clientInfo.phone,
+	clientInfo.pickup_time])) {
 		alert("Algunos datos están incompletos");
 		return;
 	}

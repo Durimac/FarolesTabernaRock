@@ -16,10 +16,10 @@ create table food
 create table orders
 (
 	id_order int unsigned not null auto_increment primary key,
-	client_name char(30) not null,
-	client_surname char(30) not null,
-	phone char(11) not null,
-	email char(20),
+	client_name char(50) not null,
+	client_surname char(60) not null,
+	phone char(15) not null,
+	email char(60),
 	full_cost float(6,2),
 	order_time datetime not null,
 	pickup_time datetime not null,
