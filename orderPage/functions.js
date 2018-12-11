@@ -1,5 +1,3 @@
-
-
 function fillMenuList(foodKindsList) {
 	var kindsList = "";
 	for (const kind of foodKindsList) {
@@ -197,7 +195,7 @@ function openModal_FinishingOrder() {
 	const hour = new Date().getHours();
 	const minutes = new Date().getMinutes() - (new Date().getMinutes()%5) + 5;
 
-	var selector = `<select id="pickUpTime_Hours" name="Hours">`;
+	var selector = `<select id="pickUpTime_Hours" name="Hours" autocomplete="off" onchange="seeRemainingTime()">`;
 	for(i = 8 ; i < 24 ; i++) {
 		if(i == hour && i < 10) {
 			selector += `<option selected>0${i}</option>`;
@@ -212,7 +210,7 @@ function openModal_FinishingOrder() {
 			selector += `<option>${i}</option>`;
 		}
 	}
-	selector += `</select><select id="pickUpTime_Minutes" name="Minutes">`;
+	selector += `</select><select id="pickUpTime_Minutes" name="Minutes" autocomplete="off" onchange="seeRemainingTime()">`;
 	for(i = 0 ; i < 60 ; i += 5) {
 		if(i == minutes && i < 10) {
 			selector += `<option selected>0${i}</option>`;
@@ -313,6 +311,26 @@ function testEmptyness(array) {
 	return true;
 }
 
+function testOnTime(hours, minutes) {
+	const actualHour = new Date().getHours();
+	const actualMinute = new Date().getMinutes();
+
+	if(hours < actualHour) {
+		return "La hora seleccionada ya pasó... Deberías mirar tu reloj de nuevo";
+	}
+	else {
+		if(minutes <= actualMinute) {
+			return "La hora seleccionada ya pasó... Deberías mirar tu reloj de nuevo";
+		}
+		else if (actualMinute - minutes < 30) {
+			return "La hora seleccionada indica que quiere el pedido en menos de 30 minutos... Las cosas tardan en hacerse. Selecciones otra hora por favor";
+		}
+		else{
+			return null;
+		}
+	}
+}
+
 
 function sendFinishedOrder() {
 	var pickUpDay = document.getElementsByClassName("selected-day");
@@ -330,6 +348,15 @@ function sendFinishedOrder() {
 	const pickUpHours = pickUpHours_Element.options[pickUpHours_Element.selectedIndex].value;
 	const pickUpMinutes = pickUpMinutes_Element.options[pickUpMinutes_Element.selectedIndex].value;
 
+	// Test the PickUpTime if the PickUpDay is today
+	if(pickUpDay == new Date().getDate()) {
+		const test = testOnTime(pickUpHours, pickUpMinutes);
+		if(test != null) {
+			alert(test);
+			return;
+		}
+	}
+	
 	const products = getProductsFromOrder();
 
 	const actualDate = new Date().getFullYear() + "-" +
@@ -388,4 +415,94 @@ function selectCalendarDay(day) {
 
 	// Select the day clicked
 	day.className = "selected-day";
+
+	seeRemainingTime();
+}
+
+function seeRemainingTime() {
+	const day_Element = document.getElementsByClassName("selected-day");
+	if(day_Element.length == 0) {
+		return;
+	}
+	const pickUpDay = day_Element[0].innerHTML;
+	const pickUpHours_Element = document.getElementById("pickUpTime_Hours");
+	const pickUpMinutes_Element = document.getElementById("pickUpTime_Minutes");
+	const pickUpHours = pickUpHours_Element.options[pickUpHours_Element.selectedIndex].value;
+	const pickUpMinutes = pickUpMinutes_Element.options[pickUpMinutes_Element.selectedIndex].value;
+
+	const millisecondRemaining = 
+		new Date(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${pickUpDay} ${pickUpHours}:${pickUpMinutes}:00`).valueOf()
+		- new Date().valueOf();
+
+	const daysLeft = (millisecondRemaining / (1000 * 60 * 60 * 24)).toFixed();
+	var resto = millisecondRemaining % (1000 * 60 * 60 * 24);
+	const hoursLeft = (resto / (1000 * 60 * 60)).toFixed();
+	resto = resto % (1000 * 60 * 60);
+	const minutesLeft = (resto / (1000 * 60)).toFixed();
+
+	var timeLeft = "";
+	// We write a string depending on the singluar or the plural for each case
+	// Days
+	if(daysLeft > 1) {
+		if(hoursLeft != 0 && minutesLeft != 0) {
+			timeLeft = `${daysLeft} días, `;
+		}
+		else if (hoursLeft != 0 || minutesLeft != 0) {
+			timeLeft = `${daysLeft} días y `;
+		}
+		else {
+			timeLeft = `${daysLeft} días.`;
+		}
+	}
+	else if(daysLeft == 1) {
+		if(hoursLeft != 0 && minutesLeft != 0) {
+			timeLeft = `${daysLeft} día, `;
+		}
+		else if (hoursLeft != 0 || minutesLeft != 0) {
+			timeLeft = `${daysLeft} día y `;
+		}
+		else {
+			timeLeft = `${daysLeft} día.`;
+		}
+	}
+	else {
+		timeLeft = "";
+	}
+
+	// Hours
+	if(hoursLeft > 1) {
+		if(minutesLeft != 0) {
+			timeLeft += `${hoursLeft} horas y `;
+		}
+		else {
+			timeLeft += `${hoursLeft} horas.`;
+		}
+	}
+	else if(hoursLeft == 1) {
+		if(minutesLeft != 0) {
+			timeLeft += `${hoursLeft} hora y `;
+		}
+		else {
+			timeLeft += `${hoursLeft} hora.`;
+		}
+	}
+	else {
+		timeLeft += "";
+	}
+
+	// Minutes
+	if(minutesLeft > 1) {
+		timeLeft += `${minutesLeft} minutos.`;
+	}
+	else if(minutesLeft == 1) {
+		timeLeft += `${minutesLeft} minuto.`;
+	}
+	else {
+		timeLeft += "";
+	}
+
+	if(timeLeft != "") {
+		document.getElementById("modal_FinishingOrder_Container_PickUpTime_Remaining").innerHTML = 
+			`Está pidiendo el pedido para dentro de ${timeLeft}`;
+	}
 }

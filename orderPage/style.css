@@ -383,7 +383,6 @@ div.modal_FinishingOrder_Container_OrderInfo_Comments_ActualChar {
 }
 
 div.modal_FinishingOrder_Container_Buttons {
-  margin-top: 10%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -416,7 +415,7 @@ td, th {
 }
 
 td.active-day {
-
+  background: white;
 }
 
 td.active-day:hover {

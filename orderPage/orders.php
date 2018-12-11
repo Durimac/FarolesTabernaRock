@@ -28,7 +28,7 @@
 			<div class="modal_Adding_Container_AmountAndPrice">
 				<div class="modal_Adding_Container_Amount">
 					Cantidad
-					<select name="select_Amount" id="select_Amount" onchange="setPriceToAddingModal()">
+					<select name="select_Amount" id="select_Amount" onchange="setPriceToAddingModal()" autocomplete="off">
 						<option selected>1</option>
 						<option>2</option>
 						<option>3</option>
@@ -68,21 +68,22 @@
 				<div class="modal_FinishingOrder_Container_Inputs">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Nombre</h5>
 					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required 
-						id="modal_FinishingOrder_Container_FirstName">
+						id="modal_FinishingOrder_Container_FirstName" maxlength="50" onkeyup="testOnlyLetters(this)">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Apellidos</h5>
 					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required
-						id="modal_FinishingOrder_Container_LastName">
+						id="modal_FinishingOrder_Container_LastName" maxlength="60" onkeyup="testOnlyLetters(this)">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Email</h5>
 					<input class="modal_FinishingOrder_Container_Inputs_Input" type="email" required
-						id="modal_FinishingOrder_Container_Email">
+						id="modal_FinishingOrder_Container_Email" maxlength="60">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Número Teléfono</h5>
 					<input class="modal_FinishingOrder_Container_Inputs_Input" type="text" required
-						id="modal_FinishingOrder_Container_Phone">
+						id="modal_FinishingOrder_Container_Phone" maxlength="15">
 					<h5 class="modal_FinishingOrder_Container_Inputs_Title">Fecha de recogida</h5>
 					<div style="display: flex; flex-direction: 'row';">
 						<div id="modal_FinishingOrder_Container_Calendar"></div>
 						<div id="modal_FinishingOrder_Container_PickUpTime"></div>
 					</div>
+					<div id="modal_FinishingOrder_Container_PickUpTime_Remaining"></div>
 				</div>
 
 				<div class="modal_FinishingOrder_Container_OrderInfo">
@@ -112,6 +113,7 @@
 	</div>
 
 	<script src="./functions.js" type="text/javascript"></script>
+	<script src="../CommonJavascript/CommonJavascript.js" type="text/javascript"></script>
 	<script>
 		const foodKindsList = <?php echo json_encode($foodKindsList) ?>;
 		fillMenuList(foodKindsList);
