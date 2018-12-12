@@ -1,17 +1,15 @@
 <?php
-session_start();
-if(@$_SESSION['privilege']!=1)
-{
-	echo 'No tiene permiso para acceder a esta p&aacute;gina';
-	exit();
-}
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo 'No tiene permiso para acceder a esta p&aacute;gina';
+        exit();
+    }
 ?>
 <html>
 <head>
     <meta charset="UTF-8" />
 </head>
     <form action="procesamiento_formulario_addProducto.php" target="_blank" accept-charset="UTF-8"  method="post" enctype="multipart/form-data">
-
         <fieldset>
             <legend>Nuevo Producto:</legend>
             Nombre del producto:<br>

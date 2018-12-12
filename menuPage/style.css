@@ -1,13 +1,45 @@
 /* Menu */
 
-th.foodMenu {
-	font-size: 20px;
-	text-align: center;
+h3.buscador {
+  font-size: 20px;
+  margin-left: 10%;
+	text-align: left;
 	color: white;
 }
 
+h3.buscadorAvanzado {
+  font-size: 15px;
+  margin-left: 15%;
+	text-align: left;
+	color: rgb(143, 190, 235);
+}
+input.text{
+  margin-left: 15%;
+}
+
+input.textAvanzado{
+  margin-left: 20%;
+}
+
+input.boton{
+  margin-top: 20px;
+  margin-left: 25%;
+}
+
+h3.nombre{
+  color: white;
+  font-size: 20px;
+  margin-left: 10%;
+}
+
+h3.parrafo{
+  color: rgb(143, 190, 235);
+  margin-left: 10%;
+}
+
 img.menuPhoto {
-  width: 250px;
+  width: 259px;
+  margin-left: 10%;
 }
 
 table.food {

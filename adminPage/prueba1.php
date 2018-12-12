@@ -1,3 +1,4 @@
+<?php include("../MySQL/mysqliFunctions.php"); ?>
 <?php include('../cabecera.php'); ?>
 
 	<h1 class="title_Name">Realiza tu peidido</h1>
@@ -46,7 +47,7 @@
 
 			<div class="modal_Adding_Container_Buttons">
 				<button class="modal_Adding_Container_Button" onclick="closeModal_Adding()">Cancelar</button>
-				<button class="modal_Adding_Container_Button" onclick="addProductToOrder()">Añadir</button>
+				<button class="modal_Adding_Container_Button" onclick="addProductToOrder()">Aï¿½adir</button>
 			</div>
 		</div>
 	</div>
@@ -54,50 +55,50 @@
 
 
 <?php
-//$hostDB="vulcano.tel.uva.es";
-$hostDB="localhost";
-//$loginDB="taw010";
-//$passDB="3eo0u4b9";
-$loginDB="root";
-$passDB="";
-$nameDB="FarolesTabernaRock";
+	/*
+	//$hostDB="vulcano.tel.uva.es";
+	$hostDB="localhost";
+	//$loginDB="taw010";
+	//$passDB="3eo0u4b9";
+	$loginDB="root";
+	$passDB="";
+	$nameDB="FarolesTabernaRock";
 
-// @ $db=mysql_pconnect($hostDB, $loginDB, $passDB);
-@ $db=mysqli_connect($hostDB, $loginDB, $passDB, $nameDB);
-if(!$db)
-{
-	echo "No fue posible conectarse con la base de Datos";
-	exit();
-}
+	// @ $db=mysql_pconnect($hostDB, $loginDB, $passDB);
+	@ $db=mysqli_connect($hostDB, $loginDB, $passDB, $nameDB);
+	if(!$db) {
+		echo "No fue posible conectarse con la base de Datos";
+		exit();
+	}
+	*/
+
+	$db = connectDB();
 
 
-// mysql_select_db($nameDB);
-$query="SELECT * FROM food";
-// $resultado=mysql_query($query);
-$resultado=mysqli_query($db, $query);
-// $num=mysql_num_rows($resultado);
-$num=mysqli_num_rows($resultado);
-echo "El numero de productos encontrado es: " . $num ."<BR>";
-for($i=0;$i<$num;$i++)
-{
-	// $fila=mysql_fetch_array($resultado);
-	$fila=mysqli_fetch_array($resultado);
+	// mysql_select_db($nameDB);
+	$query = "SELECT * FROM food";
+	// $result=mysql_query($query);
+	$result = mysqli_query($db, $query);
+	// $numberOfRows=mysql_num_rows($result);
+	$numberOfRows = mysqli_num_rows($result);
+	echo "El numero de productos encontrado es: " . $numberOfRows ."<BR>";
+	for($i = 0 ; $i < $numberOfRows ; $i++) {
+		// $row=mysql_fetch_array($result);
+		$row = mysqli_fetch_array($result);
 
-	        //echo  "<img  style='width: 400px; float: left;'  CLASS='imgBalonF1' src='BalonesFotos/Balones/" . $fila['tipo'] . "/".$fila['foto']."'/>";
-			echo  "<img  style='width: 70px; float: left;' src='../photos/FotosMenu/".$fila['image']."'/>";
-            echo  "<span >Nombre producto: ".$fila['product_name']."</span><BR>";
-			echo  "<span >Descripción: ".$fila['description']."</span><BR>";
-            echo  "<span >Precio: ".$fila['price']."&#8364</span><BR>";
-			
-			echo "<form method='post'>";	//echo "<form method='post' action='comprar_producto.php'>";
-            echo "<input type='hidden' name='id_producto' value='".$fila['id_product']."'>";
-            echo "<select type='text' title='Cantidad del producto' name='cantidad'><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select>";
-            echo "<input type='submit' value='Comprar'>";
-            echo "</form>";
-            
-   
-}
-mysqli_close($db);
+		//echo  "<img  style='width: 400px; float: left;'  CLASS='imgBalonF1' src='BalonesFotos/Balones/" . $row['tipo'] . "/".$row['foto']."'/>";
+		echo  "<img  style='width: 70px; float: left;' src='../photos/FotosMenu/".$row['image']."'/>";
+		echo  "<span >Nombre producto: ".$row['product_name']."</span><BR>";
+		echo  "<span >Descripciï¿½n: ".$row['description']."</span><BR>";
+		echo  "<span >Precio: ".$row['price']."&#8364</span><BR>";
+				
+		echo "<form method='post'>";	//echo "<form method='post' action='comprar_producto.php'>";
+		echo "<input type='hidden' name='id_producto' value='".$row['id_product']."'>";
+		echo "<select type='text' title='Cantidad del producto' name='cantidad'><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select>";
+		echo "<input type='submit' value='Comprar'>";
+		echo "</form>";
+	}
+	mysqli_close($db);
 ?>
 
 <!-- Script for fill the Menu list -->
@@ -106,16 +107,16 @@ mysqli_close($db);
 	const veganFood = [
 		{ name: "TORITILLA CASERA BUENA QUE TE CAGAS", price: "5.30", description: "Cosa verde poco sabrosa" },
 		{ name: "Flores", price: "6.50", description: "Al menos huele bien..." },
-		{ name: "Tofu", price: "1.30", description: "Nunca he sabíoh lo que es Hulio" },
+		{ name: "Tofu", price: "1.30", description: "Nunca he sabï¿½oh lo que es Hulio" },
 	];
 	const carnianFood = [
 		{ name: "Vaca", price: "9.20", description: "Carne de animal con 4 patas y cuernos" },
-		{ name: "Ciervo", price: "20.95", description: "Carne de animal con 4 patas y cuernos más largos" },
+		{ name: "Ciervo", price: "20.95", description: "Carne de animal con 4 patas y cuernos mï¿½s largos" },
 	];
 
 	const foodTypesList = [
 		{ type: "Vegano", productsList: veganFood },
-		{ type: "Carnívoro", productsList: carnianFood }
+		{ type: "Carnï¿½voro", productsList: carnianFood }
 	];
 
 	var typesList = "";
