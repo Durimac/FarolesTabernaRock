@@ -110,20 +110,3 @@ img.food {
   float: left;
   height: 100%;
 }
-
-/* ------------------------ FOOTER ------------------------ */
-footer {
-  margin-top: 10%;
-  height: 150px;
-  background-color: rgba(17, 45, 95, 0.8);
-}
-
-div.footer {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 30px;
-  color: white;
-}

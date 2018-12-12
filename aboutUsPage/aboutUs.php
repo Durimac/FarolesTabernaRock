@@ -48,9 +48,4 @@
 	</script>
 
 
-	<footer>
-		<div class="footer">Estamos en Paseo Farnesio 19, 47013 Valladolid, España</div>
-	</footer>
-</body>
-
-</html>
+<?php include('../footer.php'); ?>

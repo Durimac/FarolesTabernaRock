@@ -16,6 +16,7 @@
 
 	<title>FarolesTabernaRock_MainPage</title>
 	<link rel="stylesheet" href="../headerStyle.css" type="text/css" />
+	<link rel="stylesheet" href="../footerStyle.css" type="text/css" />
 	<link rel="stylesheet" href="./style.css" type="text/css" />
 </head>
 
