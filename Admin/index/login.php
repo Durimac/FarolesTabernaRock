@@ -20,8 +20,7 @@
     $result = mysqli_query($db, $query);
     $numerOfRows = mysqli_num_rows($result);
     if($numerOfRows != 1) {
-        echo $login . " " . $password;
-        echo "El nombre o la contraseña no coinciden, comprueba los datos. {$numerOfRows}";
+        echo "El nombre o la contraseña no coinciden, comprueba los datos.";
     }
     else {
         $row = mysqli_fetch_array($result);
