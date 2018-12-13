@@ -1,4 +1,4 @@
-<?php include("../MySQL/mysqliFunctions.php"); ?>
+<?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
 	session_start();
 	if(@$_SESSION['privilege'] != 1) {
@@ -19,7 +19,7 @@
 	@	$penista_name = $_POST['firstname'];
 	@	$penista_surname = $_POST['lastname'];
 	@	$penista_email = $_POST['email'];
-	@	$penista_telephone = $_POST['phone_number'];
+	@	$penista_phone = $_POST['phone_number'];
 	@	$penista_age = $_POST['birthDate'];
 	@	$clothes = $_POST['Clothes'];
 	@	$clothes_size = $_POST['size'];
@@ -27,42 +27,16 @@
 	$penista_name =	normalizeData($penista_name);
 	$penista_surname = normalizeData($penista_surname);
 	$penista_email = normalizeData($penista_email);
-	$penista_telephone = normalizeData($penista_telephone);
+	$penista_phone = normalizeData($penista_phone);
 	$penista_age = normalizeData($penista_age);
 	$clothes = normalizeData($clothes);
 	$clothes_size = normalizeData($clothes_size);
 	
-	if(!$penista_name || !$penista_email || !$penista_telephone || !$penista_age) {
-		echo "No	ha	introducido	toda	la	información	requerida	para	el	cliente.	<br>"
-				."Por	favor,	vuelva	a	la	página	anterior	e	inténtelo	de	nuevo."; 
+	if(!$penista_name || !$penista_email || !$penista_phone || !$penista_age) {
+		echo "<script type=\"text/javascript\">alert('Rellene todos los campos por favor')</script>";
 		exit();
 	}
-	/*
-	$penista_name	=	trim($penista_name);
-	$penista_surname	=	trim($penista_surname);
-	$penista_email	=	trim($penista_email);
-	$penista_telephone	=	trim($penista_telephone);
-	$penista_age	=	trim($penista_age);
-	$clothes	=	trim($clothes);
-	$clothes_size	=	trim($clothes_size);
 		
-	$penista_name	=	addslashes($penista_name);
-	$penista_surname	=	addslashes($penista_surname);
-	$penista_email	=	addslashes($penista_email);
-	$penista_telephone	=	addslashes($penista_telephone);
-	$penista_age	=	addslashes($penista_age);
-	$clothes	=	addslashes($clothes);
-	$clothes_size	=	addslashes($clothes_size);
-	*/
-	
-	// if ($clothes=='Yes')
-	// 	$clothes='Y';
-	// else if ($clothes=='No')
-	// {
-	// 	$clothes='N';
-	// 	$clothes_size=NULL;
-	// }
-				
 	$allowedCharacters = "aáäàâbcçdeéëèêfghiíïìîjklmnoóöòôpqrstuúüùûvwxyzAÁÄÀÂBCÇDEÉËÈÊFGHIJKLMNOÓÖÒÔPQRSTUÚÜÙÛVWXYZ-_'\\";
 	
 	$array_name = explode(' ',$penista_name);
@@ -71,8 +45,7 @@
 	for ($i = 0 ; $i < $num ; $i++) {
 		for ($j = 0 ; $j < strlen($array_name[$i]) ; $j++) {
 			if (strpos($allowedCharacters, substr($array_name[$i], $j, 1)) === false) {
-				echo strpos($allowedCharacters, substr($array_name[$i], $j, 1));
-				echo $array_name[$i] . " no es válido<br>";
+				echo "<script type=\"text/javascript\">alert('Introduzca un nombre válido por favor. ".$array_name[$i]." no es válido')</script>";
 				exit;
 			}
 		} 
@@ -84,16 +57,15 @@
 	for ($i = 0 ; $i < $num ; $i++) {
 		for ($j = 0; $j < strlen($array_surname[$i]); $j++) {
 			if (strpos($allowedCharacters, substr($array_surname[$i], $j, 1)) === false) {
-				echo strpos($allowedCharacters, substr($array_surname[$i], $j, 1));
-				echo $array_surname[$i] . " no es válido<br>";
+				echo "<script type=\"text/javascript\">alert('Introduzca un apellido válido por favor. ".$array_surname[$i]." no es válido')</script>";
 				exit;
 			}
 		} 
 	}
 	
 	
-	if ((!ctype_digit($penista_telephone)) || (strlen($penista_telephone)!= 9)) {
-		echo 'Debe introducir un número de 9 dígitos';
+	if ((!ctype_digit($penista_phone)) || (strlen($penista_phone)!= 9)) {
+		echo "<script type=\"text/javascript\">alert('Introduzca un número de 9 dígitos.')</script>";
 		exit();
 	}
 	
@@ -107,65 +79,61 @@
 	$penista_day = $array_age[2];
 
 	if($penista_year > $year) {
-		echo 'Introduzca una fecha de nacimiento verídica1';
+		echo "<script type=\"text/javascript\">alert('Introduzca una fecha verídica')</script>";
 		exit();
 	}
 	
 	if(($penista_month > 12) || ($penista_month < 0) ) {
-		echo 'Introduzca una fecha de nacimiento verídica2' . $penista_month;
+		echo "<script type=\"text/javascript\">alert('Introduzca una fecha verídica')</script>";
 		exit();
 	}
 	
 	if(($penista_day > 31) || ($penista_day < 0) ) {
-		echo 'Introduzca una fecha de nacimiento verídica3';
+		echo "<script type=\"text/javascript\">alert('Introduzca una fecha verídica')</script>";
 		exit();
 	}
 	
 	if(($year - $penista_year) > 120) {
-		echo 'Introduzca una fecha de nacimiento verídica4';
+		echo "<script type=\"text/javascript\">alert('¿Es usted un poco viejete no?')</script>";
 		exit();
 	}
 	
 	
 	if(($year - $penista_year) < 18) {
-		echo 'Para ser peñista debe ser mayor de edad';
+		echo "<script type=\"text/javascript\">alert('Debe ser mayor de edad para ser peñista')</script>";
 		exit();
 	}
 	else if(($year - $penista_year) == 18) {
 		if($penista_month > $month) {
-			echo 'Para ser peñista debe ser mayor de edad';
+			echo "<script type=\"text/javascript\">alert('Debe ser mayor de edad para ser peñista')</script>";
 			exit();
 		}
 		else if($penista_month == $month) {
 			if($penista_day > $day) {
-				echo 'Para ser peñista debe ser mayor de edad';
+				echo "<script type=\"text/javascript\">alert('Debe ser mayor de edad para ser peñista')</script>";
 				exit();
 			}
 		}
 	}
 	
 	if (!(filter_var($penista_email, FILTER_VALIDATE_EMAIL))) {
-		echo "Esta dirección de correo ($penista_email) no es válida.";
+		echo "<script type=\"text/javascript\">alert('Dirección de correo no es valida')</script>";
 	}
-
-
-	/*
-	@ $db = mysqli_connect('localhost',	'root',	'',	'FarolesTabernaRock');
-	mysqli_set_charset($db,"utf8");
-	if(!$db) {
-		echo	'Error:	No	se	ha	podido	realizar	la	conexión	con	la	Base	de	Datos.	Por	favor,	inténtelo	
-					de	nuevo	más	tarde.';
-		exit;
-	}
-	*/
 
 	$db = connectDB();
 	
 	$query = "UPDATE penista SET	
-					clothes= '".	$clothes	."', clothes_size=	'".	$clothes_size	."', penista_name=	'".	$penista_name	."', penista_surname=	'".	$penista_surname	."', penista_email=	'"	.	$penista_email	."', penista_phone=  '"	.	$penista_telephone	."', penista_age= '"	.	$penista_age	."'
+					clothes= '".	$clothes	."', clothes_size=	'".	$clothes_size	."', penista_name=	'".	$penista_name	."', penista_surname=	'".	$penista_surname	."', penista_email=	'"	.	$penista_email	."', penista_phone=  '"	.	$penista_phone	."', penista_age= '"	.	$penista_age	."'
                     WHERE id_penista=".$_SESSION['id_penista'] ;	
 	$resultado = mysqli_query($db, $query);
-	
+
+	if($db->error) {
+		echo "Ha ocurrido un error al intentar modificar el Peñista: " . $db->error;
+	}
+	else {
+		echo "<script type=\"text/javascript\">alert(\"Peñista registrado correctamente\");</script>";
+	}
+
 	mysqli_close($db);
 ?>
 </body>

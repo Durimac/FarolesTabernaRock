@@ -6,10 +6,10 @@ function fillMenuList(foodKindsList) {
 					<h4 class="order_Menu_Type">${kind.kind}</h4>
 					<ul class="order_Menu_ProductsList">${fillOneType(kind.productsList)}</ul>
 				</li>
-			`
+			`;
 		kindsList += newTypeItem;
-		document.getElementById("order_Menu_Type").innerHTML = kindsList;
 	}
+	document.getElementById("order_Menu_Type").innerHTML = kindsList;
 }
 
 
@@ -319,14 +319,19 @@ function testOnTime(hours, minutes) {
 		return "La hora seleccionada ya pasó... Deberías mirar tu reloj de nuevo";
 	}
 	else {
-		if(minutes <= actualMinute) {
-			return "La hora seleccionada ya pasó... Deberías mirar tu reloj de nuevo";
-		}
-		else if (actualMinute - minutes < 30) {
-			return "La hora seleccionada indica que quiere el pedido en menos de 30 minutos... Las cosas tardan en hacerse. Selecciones otra hora por favor";
-		}
-		else{
+		if(hours - actualHour >= 1) {
 			return null;
+		}
+		else {
+			if(minutes <= actualMinute) {
+				return "La hora seleccionada ya pasó... Deberías mirar tu reloj de nuevo";
+			}
+			else if (minutes - actualMinute < 30) {
+				return "La hora seleccionada indica que quiere el pedido en menos de 30 minutos... Las cosas tardan en hacerse. Seleccione otra hora por favor";
+			}
+			else {
+				return null;
+			}
 		}
 	}
 }
@@ -504,5 +509,8 @@ function seeRemainingTime() {
 	if(timeLeft != "") {
 		document.getElementById("modal_FinishingOrder_Container_PickUpTime_Remaining").innerHTML = 
 			`Está pidiendo el pedido para dentro de ${timeLeft}`;
+	}
+	else {
+		document.getElementById("modal_FinishingOrder_Container_PickUpTime_Remaining").innerHTML = "";
 	}
 }

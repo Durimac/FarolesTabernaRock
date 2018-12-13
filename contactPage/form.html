@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 </head>
 <!-- <body onload="disabler(true)"> -->
-	<body>
+	<body onload="disabler(true)">
 
     <h2>¡Únete a nuestra peña para pasar una fiestas inolvidables!</h2>
 
@@ -13,16 +13,16 @@
         <fieldset>
             <legend>Informacion Personal:</legend>
             Nombre:<br>
-            <input type="text" name="firstname" placeholder="Mickey" maxlength="20" required autofocus>
+            <input type="text" name="firstname" placeholder="Mickey" maxlength="50" required autofocus>
             <br>
             Apellidos:<br>
-            <input type="text" name="lastname" placeholder="Mouse Keyboard" maxlength="20" required>
+            <input type="text" name="lastname" placeholder="Mouse Keyboard" maxlength="50" required>
             <br>
             Número de teléfono:<br>
-            <input type="text" name="phone_number" placeholder="666 777 888" maxlength="20">
+            <input type="text" name="phone_number" placeholder="666 777 888" maxlength="9" required>
             <br>
             Fecha de Naciemiento:<br>
-            <input type="date" name="birthDate" placeholder="01-01-1996" required maxlength="20" max="2000-01-01">
+            <input type="date" name="birthDate" placeholder="01-01-1996" required maxlength="20">
             <br>
             Dirección de correo electrónico:<br>
             <input type="email" name="email" maxlength="40" size="50">
@@ -40,6 +40,7 @@
 
         <script>
             function disabler(availability) {
+
                 if (availability) {
                     document.getElementById("sizex").disabled = false;
                     peñaFee = 50;

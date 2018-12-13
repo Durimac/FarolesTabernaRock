@@ -1,4 +1,4 @@
-<?php include("../MySQL/mysqliFunctions.php"); ?>
+<?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
 	session_start();
 	if(@$_SESSION['privilege'] != 1) {
@@ -18,7 +18,7 @@
 
 //-------------------------UPLOADING THE IMAGE-------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
-	$target_dir = "../photos/FotosMenu/";
+	$target_dir = "../../photos/FotosMenu/";
 
 	if(isset($_FILES["fileToUpload"])) {
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);

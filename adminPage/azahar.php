@@ -17,23 +17,6 @@
 		exit();
 	}
 
-	/*
-	$login = trim($login);
-	$password = trim($password);
-
-	// Preprocesamiento
-	$login = addslashes($login);
-	$password = addslashes($password);
-
-	@	$db	=	mysqli_connect('localhost',	'root',	'',	'FarolesTabernaRock');
-
-	if	(!$db) {
-		echo 'Error:	No	se	ha	podido	realizar	la	conexión	con	la	Base	de	Datos.	Por	favor,	inténtelo	
-			de	nuevo	más	tarde.';
-		exit;
-	}
-	*/
-
 	$db = connectDB();
 
 	//Consulta para comprobar campos repetidos

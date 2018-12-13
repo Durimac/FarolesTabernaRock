@@ -9,11 +9,12 @@
 <head>
 	<meta charset="UTF-8" />
 </head>
-	<body>
+	<body onload="disabler(true)">
 
     <h2>¡Únete a nuestra peña para pasar una fiestas inolvidables!</h2>
 
     <form action="processEditPenistaForm.php" target="_blank" accept-charset="UTF-8"  method="post">
+
 
         <fieldset>
             <legend>Informacion Personal:</legend>
@@ -24,7 +25,7 @@
             <input type="text" name="lastname" value='<?php echo $_SESSION["penista_surname"]?>' maxlength="50" required>
             <br>
             Número de teléfono:<br>
-            <input type="text" name="phone_number" value=<?php echo $_SESSION["phone"]?> maxlength="20">
+            <input type="text" name="phone_number" value='<?php echo $_SESSION["phone"]?>' required maxlength="9">
             <br>
             Fecha de Naciemiento:<br>
             <input type="date" name="birthDate" value='<?php echo $_SESSION["age"]?>' required maxlength="20">
@@ -33,7 +34,6 @@
             <input type="email" name="email" value='<?php echo $_SESSION["email"]?>' maxlength="40" size="50">
             <br><br>
         </fieldset>
-
 
         <!-- <fieldset> -->
         <p>¿Deseas vestir la vestimenta oficial de nuestro bar? Son solo 10€</p>

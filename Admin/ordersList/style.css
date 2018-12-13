@@ -1,0 +1,60 @@
+ol.orders_StatesList {
+    list-style: none;
+}
+
+h4.orders_StatesList_Title {
+    margin-bottom: 1%;
+    color: white;
+    font-size: 3vmax;
+}
+
+ul.orders_StatesList_Orders {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+li.orders_StatesList_Orders_Order {
+    padding: 5px;
+    margin: 5px;
+    background: white;
+    border: 3px solid brown;
+    overflow: auto;
+}
+
+div.orders_StatesList_Orders_Order {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 300px;
+    height: 350px;
+}
+
+div.order-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+div.order-entry-comments {
+    display: flex;
+    flex-direction: column;
+}
+
+span.order-entry{
+    font-weight: normal;
+}
+
+p.order-entry-product {
+    padding: 0;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

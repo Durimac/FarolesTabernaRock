@@ -40,8 +40,8 @@ create table order_food
 create table penista
 (
 	id_penista int unsigned not null auto_increment primary key,
-	clothes char(1) not null,
-	clothes_size char(1),
+	clothes char(4) not null,
+	clothes_size char(4),
 	penista_name char (30) not null,
 	penista_surname char (60) not null,
 	penista_email char (50),

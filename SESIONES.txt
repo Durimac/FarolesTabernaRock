@@ -1,0 +1,4 @@
+IMPORTANTE !!!!ACERCA DE LAS SESIONES!!
+para que PHP se encargue de gestionar el paso del id de session hay que establecer en php.ini session.use_trans_sid=1
+(se encuentra a 0 por defecto)
+LA DURACION DE LAS SESIONES SE ESTABLECE EN php.ini modificando el parámetro session.gc_max

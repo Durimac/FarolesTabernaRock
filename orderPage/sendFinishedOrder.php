@@ -48,10 +48,13 @@
         // Inserting all the products
         foreach($products as $index => $product) {
             $db->query("INSERT into order_food VALUES (
-                '$id_order,
+                '$id_order',
                 '$product->id_product',
-                '$product->amount'
-            )");
+                '$product->amount')"
+            );
+            if($db->error) {
+                echo "Ha ocurrido un error al insertar datos en 'order_food': " . $db->error;
+            }
         }
     }
 

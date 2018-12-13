@@ -1,0 +1,17 @@
+div.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20%;
+    height: 100%;;
+}
+
+img.addButton {
+    cursor: pointer;
+    height: 60px;
+}
+
+table {
+    color: white;
+}
