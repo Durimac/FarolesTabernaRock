@@ -1,7 +1,17 @@
 <?php
     session_start();
     if(@$_SESSION['privilege'] != 1) {
-        echo 'No tiene permiso para acceder a esta página';
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
         exit();
     }
 ?>

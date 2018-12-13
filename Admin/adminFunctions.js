@@ -5,6 +5,7 @@ function confirmLogOut() {
             if (this.readyState == 4 && this.status == 200) {
                 if(this.responseText != "" && this.responseText != null) {
                     alert(this.responseText);
+                    window.location.replace("../../indexPage/index.php");
                 }
                 else {
                     window.location.replace("../../indexPage/index.php");
