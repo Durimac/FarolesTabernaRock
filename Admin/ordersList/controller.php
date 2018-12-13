@@ -1,6 +1,5 @@
 <?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
-    session_start();
     if(@$_SESSION['privilege'] != 1) {
         echo '
             <html>
