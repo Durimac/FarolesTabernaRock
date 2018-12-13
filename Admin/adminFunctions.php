@@ -7,7 +7,6 @@
 		switch($_GET['action']) {
 			// Function to close the Sesion of Admin User
 			case "closeSesion":
-				//echo "session destroyed";
 				session_destroy();
 				break;
 		}

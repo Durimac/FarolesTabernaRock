@@ -1,14 +1,31 @@
 <?php include("../MySQL/mysqliFunctions.php"); ?>
+<?php
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
+?>
 
 <html>
 	<head>
-		<meta http-equiv='refresh' content='10;url=../indexPage/index.php' />
+		<meta http-equiv='refresh' content='10;url=../penistas/penistas.php' />
 		<meta charset="UTF-8" />
 		<title>Introducción	de Peñistas</title>
 	</head>
 	<body>
 		<h3>Resultado de la Introducción de Peñista</h3>
-		<a href="../indexPage/indexPage.php">Toque para volver a Peñistas.</a>
+		<a href="../penistas/penistas.php">Toque para volver a Peñistas.</a>
 		<p>La página se redireccionará automaticamente en 10 segundos</p>
 </html>
 

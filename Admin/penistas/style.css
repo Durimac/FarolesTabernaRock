@@ -2,6 +2,13 @@
     margin: 2%;
 }
 
+.form-container {
+    margin:5%;
+    padding: 3%;
+    padding-top: 1%; 
+    background: white;
+}
+
 div.title {
     display: flex;
     flex-direction: row;

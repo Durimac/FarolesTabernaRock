@@ -7,7 +7,7 @@
 	<div>
 		<div class="contact_JoinUs">
 			<h2 class="contact_JoinUs_Title">¿Quieres unirte a nuestra peña?</h2>
-			<a href="form.html" class="contact_JoinUs_Link" target="_blank">
+			<a href="form.php" class="contact_JoinUs_Link" target="_self">
 				Pincha aquí para unirte
 			</a>
 		</div>

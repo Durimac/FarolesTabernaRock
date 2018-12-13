@@ -20,7 +20,7 @@
     <div class="title">
         <h1 class="title_Name">Lista de Peñistas</h1>
         <img class="addButton" src="../../photos/Add.png" 
-            onclick="window.location='../../contactPage/form.html'" alt="Añadir Peñista"/>
+            onclick="window.location='./form.php'" alt="Añadir Peñista"/>
     </div>
     <hr align="left" class="title_Underline">
 

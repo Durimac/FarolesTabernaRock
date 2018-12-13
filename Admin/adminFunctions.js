@@ -12,7 +12,7 @@ function confirmLogOut() {
                 }
             }
         };
-        request.open("GET", `../adminFunctions.php?action="closeSesion"`, true);
+        request.open("GET", '../adminFunctions.php?action=closeSesion', true);
         request.send();
     }
 }

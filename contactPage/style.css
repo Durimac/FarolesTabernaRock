@@ -98,3 +98,11 @@ div.contact_Methods_Method_Text {
 }
 
 /* ------------------------ END OF CONTACT SPACE!! ------------------------ */
+
+/* -------- FORM ------ */
+.form-container {
+  margin:5%;
+  padding: 3%;
+  padding-top: 1%; 
+  background: white;
+}
