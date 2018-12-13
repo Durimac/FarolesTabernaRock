@@ -153,7 +153,7 @@
 		if (($fila['penista_name'] == $penista_name) && ($fila['penista_surname'] == $penista_surname))
 		{
 			echo "<script type=\"text/javascript\">alert(\"Vaya, parece que este usuario ya está registrado\");</script>";
-			echo "<script type=\"text/javascript\">location.href = 'form.html';</script>";
+			echo "<script type=\"text/javascript\">window.location='./form.php';</script>";
 			exit();
 		}
 	}

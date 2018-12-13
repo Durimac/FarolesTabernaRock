@@ -47,7 +47,6 @@
                         }
                         else {
                             document.getElementById("sizex").disabled = true;
-                            document.getElementById("sizex").value = " ";
                             peñaFee = 40;
                         }
                         document.getElementById("price").innerHTML = ("Ingrese " + peñaFee + "€ en este numero de cuenta");
