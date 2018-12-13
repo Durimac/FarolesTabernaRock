@@ -5,7 +5,8 @@
         echo '
             <html>
                 <head>
-                    <meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+					<meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+					<meta charset="UTF-8" />
                 </head>
                 <body>
                     <h1>No tienes permiso para ver esta página</h1>
