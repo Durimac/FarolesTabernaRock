@@ -1,10 +1,19 @@
 <?php
-	session_start();
-	if(@$_SESSION['privilege'] != 1) {
-		echo 'No tiene permiso para acceder a esta p&aacute;gina';
-		exit();
-	}
-	echo($_SESSION["product_name"]);
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Libertad.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
 ?>
 <html>
 	<head>
@@ -27,7 +36,7 @@
 		}
 	</script>
 
-	<form action='procesamiento_formulario_editarProducto.php' target='_blank' accept-charset='UTF-8'  method='post' enctype='multipart/form-data' >
+	<form action='procesamiento_formulario_editarProducto.php' target='_self' accept-charset='UTF-8'  method='post' enctype='multipart/form-data' >
 		<fieldset>
 			<legend>Editar Producto:</legend>
 			Nombre del producto:<br>
@@ -63,6 +72,7 @@
 			<input type='submit' value='Aceptar'>
 		</fieldset>			
 	</form>
+	<button name="cancel" onclick="javascript:window.history.back()">Cancelar</button>
 </html>
 							
 			

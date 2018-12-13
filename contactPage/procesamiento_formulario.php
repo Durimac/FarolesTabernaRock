@@ -1,19 +1,17 @@
 <?php include("../MySQL/mysqliFunctions.php"); ?>
+
 <html>
+	<head>
+		<meta http-equiv='refresh' content='10;url=../Admin/penistas/penistas.php' />
+		<meta charset="UTF-8" />
+		<title>Introducción	de Peñistas</title>
+	</head>
+	<body>
+		<h3>Resultado de la Introducción de Peñista</h3>
+		<a href="../Admin/penistas/penistas.php">Toque para volver a Peñistas.</a>
+		<p>La página se redireccionará automaticamente en 10 segundos</p>
+</html>
 
-<head>
-
-	<meta charset="UTF-8" />
-		<title>Introducción	de Penistas</title>
-</head>
-<script language="javascript" type="text/javascript"> 
-    function closeWindow() { 
-		window.open('','_parent',''); 
-		window.close(); 
-	} 
-    </script>
-<body>
-<h3>Resultado	de	la	Introducción	de	Clientes</h3>
 <?php
 	@ $penista_name=$_POST['firstname'];
 	@ $penista_surname=$_POST['lastname'];
@@ -36,12 +34,8 @@
 				."Por	favor,	vuelva	a	la	página	anterior	e	inténtelo	de	nuevo."; 
 		exit(); 
 	}
-	
-	if ($clothes=='Yes') {
-		$clothes='Y';
-	}
-	else if ($clothes=='No') {
-		$clothes='N';
+
+	if ($clothes=='No') {
 		$clothes_size=NULL;
 	}
 				
@@ -149,7 +143,6 @@
 					(NULL,	'".	$clothes	."',	'".	$clothes_size	."',	'".	$penista_name	."',	'".	$penista_surname	."',	'"	.	$penista_email	."',  '"	.	$penista_phone	."',  '"	.	$penista_age	."', NULL )";	
 	$resultado	=	mysqli_query($db,	$query);
 	
-	// echo "el resultado es: " .$resultado;
 	echo "<script type=\"text/javascript\">alert(\"Peñista registrado con éxito\"); closeWindow();</script>";
 	
 	mysqli_close($db);

@@ -29,7 +29,7 @@ function editPenista(penID) {
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			location.replace("./editPenistaForm.php");
+			window.location="./editPenistaForm.php";
 		}
 	};
 	xmlhttp.open("GET","controller.php?action=editPenista&idPen=" + penID,true);

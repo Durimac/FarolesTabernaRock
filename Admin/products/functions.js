@@ -27,14 +27,9 @@ function deleteProduct(productID) {
 
 function editProduct(productID) {
 	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function ()
-	{
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-		{
-			//document.getElementById("ListaDeProductos").innerHTML=xmlhttp.responseText;
-			//selecter();
-			location.replace("./formulario_editar_producto.php")
-			//alert("producto editado correctamente");
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			window.location="./formulario_editar_producto.php";
 		}
 	};
 	xmlhttp.open("GET","controller.php?action=edit&id=" + productID,true);

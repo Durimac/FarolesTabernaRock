@@ -1,10 +1,20 @@
 <?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
-	session_start();
-	if(@$_SESSION['privilege'] != 1) {
-		echo 'No tiene permiso para acceder a esta p&aacute;gina';
-		exit();
-	}
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
 ?>
 <?php
 	if(!isset($_GET['action'])) {
@@ -23,20 +33,20 @@
 
 				echo " 
 				<tr>
-					<td>Borrar</td> 
-					<td>Nombre</td>
-					<td>Apellidos</td>
-					<td>Teléfono</td> 
-					<td>Fecha de Nacimiento</td> 
-					<td>Email</td> 
-					<td>Ropa</td> 
-					<td>Talla</td>
-					<td>Editar</td> 
+					<th>Borrar</th>
+					<th align='left'>Nombre</th>
+					<th align='left'>Apellidos</th>
+					<th align='left'>Teléfono</th>
+					<th align='left'>Fecha de Nacimiento</th>
+					<th align='left'>Email</th>
+					<th align='left'>Ropa</th>
+					<th align='left'>Talla</th>
+					<th>Editar</th>
 				</tr>"; 
 				while($row = mysqli_fetch_array($result)) {
 					echo "
 					<tr>
-						<td>"."<img class='order_Menu_Product_DeleteButton'"."src='../../photos/Delete.png'"."alt='Delete Button'"."onclick='deletePenista(${row['id_penista']})'"."'/>"."</td>
+						<td>"."<img class='deleteButton'"."src='../../photos/Delete.png'"."alt='Delete Button'"."onclick='deletePenista(${row['id_penista']})'"."'/>"."</td>
 						<td>".$row['penista_name']."</td>
 						<td>".$row['penista_surname']."</td> 
 						<td>".$row['penista_phone']."</td>
@@ -44,7 +54,7 @@
 						<td>".$row['penista_email']."</td> 
 						<td>".$row['clothes']."</td>
 						<td>".$row['clothes_size']."</td>
-						<td>"."<img style='width: 30px;' class='order_Menu_Product_EditButton'"."src='../../photos/Edit.png'"."alt='Edit Button'"." onclick='editPenista(${row['id_penista']})'"."'/>"."</td> 
+						<td>"."<img class='editButton'"."src='../../photos/Edit.png'"."alt='Edit Button'"." onclick='editPenista(${row['id_penista']})'"."'/>"."</td> 
 					</tr>";
 				}
 				echo "</table>"; //close the table

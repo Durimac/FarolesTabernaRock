@@ -1,5 +1,22 @@
 <?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/index.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
+?>
+<?php
     $db = connectDB();
 
     // We get the kinds of food that are stored in the data base

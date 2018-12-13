@@ -1,7 +1,17 @@
 <?php
     session_start();
     if(@$_SESSION['privilege'] != 1) {
-        echo 'No tiene permiso para acceder a esta p&aacute;gina';
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
         exit();
     }
 ?>
@@ -13,9 +23,7 @@
 
     <h2>¡Únete a nuestra peña para pasar una fiestas inolvidables!</h2>
 
-    <form action="processEditPenistaForm.php" target="_blank" accept-charset="UTF-8"  method="post">
-
-
+    <form action="processEditPenistaForm.php" target="_self" accept-charset="UTF-8"  method="post">
         <fieldset>
             <legend>Informacion Personal:</legend>
             Nombre:<br>
@@ -50,7 +58,6 @@
                 }
                 else {
                     document.getElementById("sizex").disabled = true;
-                    //document.getElementById("sizex").value = " ";
                     peñaFee = 40;
                     checker("N");
                 }
@@ -68,19 +75,11 @@
                     document.getElementById("clothesNO").checked = true;
                     peñaFee = 40;
                 }
-                else {alert("vaya, parece que el valor no es correcto...");}
+
                 document.getElementById("price").innerHTML = ("Ingrese " + peñaFee + "€ en este numero de cuenta");
             }
             checker("<?php echo $_SESSION["clothes"]?>");
         </script>
-
-        <!-- <script>
-            function resetConfirm() {
-                return confirm("ATENCION esta accion devolvera todos los campos a su valor inicial.¿Está seguro de que desea realizarla?");
-				}
-
-        </script> -->
-
 
         <fieldset>
             <legend>Vestimenta:</legend>
@@ -109,12 +108,9 @@
         <input type="checkbox" name="imageRights" value="Aceppt" checked> Acepto la distribucion de
         imagenes en las que aparezca en la página web o las RRSS del bar<br>
 
-        
-
-        <!--<input type="reset" onclick="return resetConfirm(); disabler(true);">-->
         <input type="submit" value="Aceptar">
     </form>
-
+    <button name="cancel" onclick="javascript:window.history.back();">Cancelar</button>
 </body>
 
 </html>

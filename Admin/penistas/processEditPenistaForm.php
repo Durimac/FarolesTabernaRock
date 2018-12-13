@@ -1,20 +1,34 @@
 <?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
-	session_start();
-	if(@$_SESSION['privilege'] != 1) {
-		echo 'No tiene permiso para acceder a esta p&aacute;gina';
-		exit();
-	}
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Azahar.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
 ?>
+
 <html>
+	<head>
+		<meta http-equiv='refresh' content='10;url=../penistas/penistas.php' />
+		<meta charset="UTF-8" />
+		<title>Edición	de Peñista</title>
+	</head>
+	<body>
+		<h3>Resultado de la Edición de Peñista</h3>
+		<a href="../penistas/penistas.php">Toque para volver a Peñistas.</a>
+		<p>La página se redireccionará automaticamente en 10 segundos</p>
+</html>
 
-<head>
-
-	<meta charset="UTF-8" />
-		<title>Actualización	de Peñistas</title>
-</head>
-<body>
-<h3>Resultado	de	la	Actualización	de	Peñistas</h3>
 <?php
 	@	$penista_name = $_POST['firstname'];
 	@	$penista_surname = $_POST['lastname'];
@@ -131,7 +145,7 @@
 		echo "Ha ocurrido un error al intentar modificar el Peñista: " . $db->error;
 	}
 	else {
-		echo "<script type=\"text/javascript\">alert(\"Peñista registrado correctamente\");</script>";
+		echo "<script type=\"text/javascript\">alert(\"Peñista editado correctamente\");</script>";
 	}
 
 	mysqli_close($db);

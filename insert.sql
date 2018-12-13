@@ -34,6 +34,17 @@ INSERT into food VALUES (null , 'Campero Vegano', 'Seitan, esparrago, guacamole,
 INSERT into administrator VALUES ('JacintoFaroles', 'FunnyFaroles', true);
 INSERT into administrator VALUES ('MalvadoVillano', 'FunnyFaroles', false);
 
-INSERT into penista VALUES	(NULL, 'Y', 'S', 'Darío', 'Yuste Tirados', 'dyusteuva@gmail.com', '689846729', '1996-12-23', NULL);
-INSERT into penista VALUES	(NULL, 'Y', 'S', 'Adrián', 'Mazaira Hernández', 'adrian.mazaira@alumnos.uva.es', '679292130', '1996-05-05', NULL);
-INSERT into penista VALUES	(NULL, 'Y', 'S', 'Javier', 'Olmedo Gutiérrez', 'javier.olmedo@alumnos.uva.es', '987591139', '1992-08-20', NULL);
+INSERT into penista VALUES (NULL, 'Yes', 'S', 'Darío', 'Yuste Tirados', 'dyusteuva@gmail.com', '689846729', '1996-12-23', NULL);
+INSERT into penista VALUES (NULL, 'Yes', 'XXL', 'Adrián', 'Mazaira Hernández', 'adrian.mazaira@alumnos.uva.es', '679292130', '1996-05-05', NULL);
+INSERT into penista VALUES (NULL, 'No', NULL, 'Javier', 'Olmedo Gutiérrez', 'javier.olmedo@alumnos.uva.es', '987591139', '1992-08-20', NULL);
+
+/* SOLO VALIDO SI LAS TABLAS ESTÁN  VAAAACCIIIIAAAASSS.   Sino los id_order, para la tabla order_food estarán mal */
+INSERT into orders VALUES (NULL, 'Darío', 'Yuste Tirados', '689846729', 'dyusteuva@gmail.com', '5.20', '2018-12-13 13:00:00', '2018-12-14 13:00:00', 'Nuevo', 'Quiero el pedido calentito, pero no mucho');
+INSERT into order_food VALUES (1, '3', 1);
+INSERT into order_food VALUES (1, '1', 1);
+INSERT into order_food VALUES (1, '2', 1);
+INSERT into orders VALUES (NULL, 'Adrián', 'Mazaira Hernández', '679292130', 'adrian.mazaira@alumnos.uva.es', '15.50', '2018-12-13 13:19:30', '2018-12-15 13:00:00', 'Nuevo', 'Quiero el pedido frío. Lo se, soy rarito');
+INSERT into order_food VALUES (2, '4', 5);
+INSERT into order_food VALUES (2, '8', 2);
+INSERT into orders VALUES (NULL, 'Javier', 'Olmedo Gutiérrez', '987591139', 'javier.olmedo@alumnos.uva.es', '5.20', '2018-12-13 14:20:10', '2018-12-14 11:30:00', 'Nuevo', 'Pues... A mi me gustan los trenes :)');
+INSERT into order_food VALUES (3, '1', 10);

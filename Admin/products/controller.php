@@ -1,10 +1,20 @@
 <?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
-	session_start();
-	if(@$_SESSION['privilege'] != 1) {
-		echo 'No tiene permiso para acceder a esta p&aacute;gina';
-		exit();
-	}
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Libertad.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
 ?>
 
 <html> <meta charset="UTF-8" /> </html>
@@ -25,27 +35,27 @@
 
 				echo " 
 				<tr> 
-					<td>Borrar</td>
-					<td>Foto</td>
-					<td>Nombre Producto</td> 
-					<td>Descripción</td> 
-					<td>Precio</td> 
-					<td>Calorias</td> 
-					<td>Tipo</td>
-					<td>Editar</td> 
+					<th>Borrar</th>
+					<th>Foto</th>
+					<th align='left'>Nombre Producto</th>
+					<th align='left'>Descripción</th>
+					<th align='left'>Precio</th>
+					<th align='left'>Calorias</th>
+					<th align='left'>Tipo</th>
+					<th>Editar</th>
 				</tr>";
 
 				while($row = mysqli_fetch_array($result)) {		
 					echo "
 					<tr>
-						<td>"."<img class='order_Menu_Product_DeleteButton'"."src='../../photos/Delete.png'"."alt='Delete Button'"."onclick='deleteProduct(${row['id_product']})'"."'/>"."</td>
+						<td>"."<img class='deleteButton'"."src='../../photos/Delete.png'"."alt='Delete Button'"."onclick='deleteProduct(${row['id_product']})'"."'/>"."</td>
 						<td>"."<img  style='width: 70px; float: left;' src='../../photos/FotosMenu/".$row['image']."'/>"."</td>
 						<td>".$row['product_name']."</td>
 						<td>".$row['description']."</td> 
 						<td>".$row['price']."</td> 
 						<td>".$row['calories']."</td> 
 						<td>".$row['kind']."</td>
-						<td>"."<img style='width: 30px;' class='order_Menu_Product_EditButton'"."src='../../photos/Edit.png'"."alt='Edit Button'"." onclick='editProduct(${row['id_product']})'"."'/>"."</td> 
+						<td>"."<img class='editButton'"."src='../../photos/Edit.png'"."alt='Edit Button'"." onclick='editProduct(${row['id_product']})'"."'/>"."</td> 
 					</tr>";
 				}
 				echo "</table>"; //close the table

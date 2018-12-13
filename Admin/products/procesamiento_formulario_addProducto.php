@@ -1,23 +1,33 @@
 <?php include("../../MySQL/mysqliFunctions.php"); ?>
 <?php
-	session_start();
-	if(@$_SESSION['privilege'] != 1) {
-		echo 'No tiene permiso para acceder a esta p&aacute;gina';
-		exit();
-	}
+    session_start();
+    if(@$_SESSION['privilege'] != 1) {
+        echo '
+            <html>
+                <head>
+                    <meta http-equiv="refresh" content="5;url=../index/Libertad.php" />
+                </head>
+                <body>
+                    <h1>No tienes permiso para ver esta página</h1>
+                    <h2>Primero has de logearte en el sistema como Admin. Redireccionando...</h2>
+                </body>
+            </html>
+        ';
+        exit();
+    }
 ?>
+
 <html>
-<head>
-
-	<meta charset="UTF-8" />
+	<head>
+		<meta http-equiv='refresh' content='10;url=../products/products.php' />
+		<meta charset="UTF-8" />
 		<title>Introducción	de Producto</title>
-</head>
-<h3>Resultado	de	la	Introducción	de	producto</h3>
-
+	</head>
+	<body>
+		<h3>Resultado de la Introducción de producto</h3>
+		<a href="../products/products.php">Toque para volver a Productos.</a>
+		<p>La página se redireccionará automaticamente en 10 segundos</p>
 </html>
-
-
-
 
 <?php
 
@@ -90,21 +100,6 @@
 		exit; 
 	}
 
-	/*
-	$product_name = trim($product_name);
-	$description = trim($description);
-	$calories = trim($calories);
-	$price = trim($price);
-	$kind = trim($kind);
-		
-	$product_name	=	addslashes($product_name);
-	$description	=	addslashes($description);
-	$calories	=	addslashes($calories);
-	$price	=	addslashes($price);
-	$kind	=	addslashes($kind);
-	$image	=	addslashes($image);
-	*/
-
 	$allowedCharacters = "aáäàâbcçdeéëèêfghiíïìîjklmnoóöòôpqrstuúüùûvwxyzAÁÄÀÂBCÇDEÉËÈÊFGHIJKLMNOÓÖÒÔPQRSTUÚÜÙÛVWXYZ-_'\\";
 	
 	$array_name = explode(' ',$product_name);
@@ -167,8 +162,8 @@
 	
     mysqli_close($db);
 
-	echo "<script type=\"text/javascript\">alert(\"Producto registrado correctamente\");</script>";
-	echo "El archivo ". basename( $_FILES["fileToUpload"]["name"]). " se ha cargado con éxito.";
-	echo "<a href=\"luna.php\">Redireccionar a la pagina del administrador.</a>";
-
+	echo "
+		<h4> El archivo ". basename( $_FILES["fileToUpload"]["name"]). " se ha cargado con éxito.</h4>
+		<script type=\"text/javascript\">alert(\"Producto registrado correctamente\");</script>
+	";
 ?>
