@@ -403,6 +403,7 @@ function sendFinishedOrder() {
 		if (this.readyState == 4 && this.status == 200) {
 			closeModal("modal_FinishingOrder");
 			alert(this.responseText);
+			location.reload();
 		}
 	};
 	request.open("POST", "sendFinishedOrder.php", true);

@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<h3>Resultado de la Introducción de Peñista</h3>
-		<a href="../indexPage/indexPage.php">Toque para volver a Peñistas.</a>
+		<a href="../indexPage/index.php">Toque para volver a Peñistas.</a>
 		<p>La página se redireccionará automaticamente en 10 segundos</p>
 </html>
 
